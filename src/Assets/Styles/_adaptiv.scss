@@ -1,0 +1,116 @@
+@media (max-width: 1000px) and (min-width: 700px) {
+  .navigation_interface {
+    width: 30vw !important;
+  }
+
+  .navigation_buttons {
+    & button {
+      width: 15vw;
+    }
+  }
+
+  .input_field {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 700px) and (min-width: 600px) {
+  .navigation_interface {
+    width: 45vw !important;
+  }
+
+  .navigation_buttons {
+    & button {
+      width: 25vw;
+    }
+  }
+
+  .input_field {
+    width: 60% !important;
+
+    &.large {
+      width: 70% !important;
+    }
+  }
+}
+
+@media (max-width: 600px) and (min-width: 400px) {
+  .navigation_interface {
+    display: none !important;
+  }
+
+  .navigation_buttons {
+    & button {
+      width: 30vw;
+    }
+  }
+
+  .burger_button {
+    display: block;
+  }
+
+  .input_field {
+    width: 100% !important;
+  }
+
+  .partial_window {
+    gap: 15px;
+  }
+
+  .blue_button {
+    &.small {
+      height: 6vh;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 400px) and (min-width: 100px) {
+  .navigation_interface {
+    display: none !important;
+  }
+
+  .navigation_buttons {
+    & button {
+      width: 30vw;
+    }
+  }
+
+  .logo {
+    gap: 5px !important;
+  }
+
+  .partial_window {
+    gap: 15px;
+  }
+
+  .organization_navigation {
+    justify-content: space-between;
+    padding: 5px;
+  }
+
+  .blue_button {
+    &.small {
+      height: 6vh;
+      width: 100%;
+    }
+  }
+
+  .burger_button {
+    display: block;
+  }
+
+  .input_field {
+    width: 100% !important;
+
+    & input {
+      height: 6vh !important;
+    }
+  }
+
+  .cells_stats {
+    & div {
+      width: 31%;
+    }
+  }
+}
