@@ -41,6 +41,8 @@ export default function LoginWindow() {
 
     const data = await dispatch(fetchUserData(userData));
 
+    console.log(data);
+
     if (data) {
       navigate("/");
     }
