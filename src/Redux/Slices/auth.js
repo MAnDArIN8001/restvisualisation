@@ -39,7 +39,7 @@ export const registerUserData = createAsyncThunk(
 
       return data;
     } catch (error) {
-      console.log(error.message);
+      rejectWithValue(error.message);
     }
   }
 );
