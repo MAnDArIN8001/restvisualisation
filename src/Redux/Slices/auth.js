@@ -8,11 +8,13 @@ export const fetchUserData = createAsyncThunk(
     try {
       const response = await axios.post("/login", params);
 
+      console.log(response);
+
       if (!response.status) {
         throw new Error("ServerError: 500");
       }
 
-      const data = JSON.parse(response.data);
+      const data = response.data;
 
       localStorage.user = JSON.stringify(data);
 
@@ -33,7 +35,7 @@ export const registerUserData = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = JSON.parse(response.data);
+      const data = response.data;
 
       localStorage.user = JSON.stringify(data);
 

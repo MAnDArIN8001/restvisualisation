@@ -14,7 +14,7 @@ export const createTable = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = JSON.parse(response.data);
+      const data = response.data;
 
       localStorage.product = response.data;
 
@@ -58,7 +58,7 @@ export const shipProduct = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = JSON.parse(response.data);
+      const data = response.data;
 
       localStorage.ship = response.data;
 

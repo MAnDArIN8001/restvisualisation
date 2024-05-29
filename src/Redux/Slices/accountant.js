@@ -14,7 +14,7 @@ export const fetchInventory = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = JSON.parse(response.data);
+      const data = response.data;
 
       localStorage.inventory = JSON.stringify(data);
 
@@ -37,7 +37,7 @@ export const fetchRevaluation = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = JSON.parse(response.data);
+      const data = response.data;
 
       localStorage.revaluation = response.data;
 
@@ -58,7 +58,7 @@ export const writeOff = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = JSON.parse(response.data);
+      const data = response.data;
 
       localStorage.writeOff = response.data;
 
@@ -81,7 +81,7 @@ export const createRevaluation = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = JSON.parse(response.data);
+      const data = response.data;
 
       localStorage.revalTable = response.data;
 
