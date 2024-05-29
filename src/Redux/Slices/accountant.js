@@ -43,7 +43,7 @@ export const fetchRevaluation = createAsyncThunk(
 
       return data;
     } catch (error) {
-      rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -64,7 +64,7 @@ export const writeOff = createAsyncThunk(
 
       return data;
     } catch (error) {
-      rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -87,7 +87,7 @@ export const createRevaluation = createAsyncThunk(
 
       return data;
     } catch (error) {
-      rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );

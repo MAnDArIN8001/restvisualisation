@@ -14,6 +14,7 @@ export default function SigninWindow() {
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [thirdName, setThirdName] = useState("");
+  const [organizationId, setOrganizationId] = useState("");
 
   const phoneInput = useRef();
 
@@ -46,18 +47,27 @@ export default function SigninWindow() {
     }
 
     if (isInputsCorrect) {
+      FetchUser();
     }
   };
 
   const FetchUser = async () => {
-    const userData = {
+    let newUser = {
       login,
       password,
+      phone,
+      title: role,
+      firstName: name,
+      secondName: lastName,
+      surname: thirdName,
+      organizationId,
     };
 
-    const data = await dispatch(registerUserData(userData));
+    const data = await dispatch(registerUserData(newUser));
 
-    if (data) {
+    console.log(data);
+
+    if (!data?.error) {
       navigate("/");
     }
   };
@@ -143,6 +153,16 @@ export default function SigninWindow() {
           placeholder="Введите отчество"
           value={thirdName}
           onChange={(e) => setThirdName(e.target.value)}
+        />
+      </div>
+
+      <div className={styles.base_field}>
+        <p>Идентификатор организации</p>
+        <input
+          type="number"
+          placeholder="Введите идентификатор"
+          value={organizationId}
+          onChange={(e) => setOrganizationId(e.target.value)}
         />
       </div>
 

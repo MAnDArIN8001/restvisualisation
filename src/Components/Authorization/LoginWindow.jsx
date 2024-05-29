@@ -43,7 +43,7 @@ export default function LoginWindow() {
 
     console.log(data);
 
-    if (data) {
+    if (!data?.error) {
       navigate("/");
     }
   };

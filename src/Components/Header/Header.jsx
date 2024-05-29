@@ -8,7 +8,7 @@ import styles from "../../Assets/Styles/Style.module.scss";
 import profileImg from "../../Assets/Pictures/иконки/пользователь.svg";
 import burgerButtonSvg from "../../Assets/Pictures/иконки/menu_24dp_FILL0_wght400_GRAD0_opsz24.svg";
 
-export default function Header({ currentUser, openMenu }) {
+export default function Header({ currentUser, openMenu, changeSignin }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -27,8 +27,22 @@ export default function Header({ currentUser, openMenu }) {
 
         {!currentUser ? (
           <section className={styles.navigation_buttons}>
-            <button onClick={() => navigate("/login")}>Войти</button>
-            <button onClick={() => navigate("/signin")}>Регистрация</button>
+            <button
+              onClick={() => {
+                navigate("/login");
+                changeSignin(false);
+              }}
+            >
+              Войти
+            </button>
+            <button
+              onClick={() => {
+                navigate("/signin");
+                changeSignin(true);
+              }}
+            >
+              Регистрация
+            </button>
           </section>
         ) : (
           <img

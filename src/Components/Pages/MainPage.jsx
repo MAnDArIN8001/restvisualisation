@@ -11,6 +11,7 @@ import styles from "../../Assets/Styles/Style.module.scss";
 import BurgerMenu from "../BurgerMeny/BrgerMenu";
 
 export default function MainPage() {
+  const [isSignin, setSignin] = useState(false);
   const [burgerState, setBurgerState] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({
@@ -50,9 +51,13 @@ export default function MainPage() {
           }}
         />
       )}
-      <Header currentUser={currentUser} openMenu={OpenMenu} />
+      <Header
+        changeSignin={setSignin}
+        currentUser={currentUser}
+        openMenu={OpenMenu}
+      />
 
-      <main className={styles.container}>
+      <main className={`${styles.container} ${isSignin ? styles.auth : ""}`}>
         {currentUser && <Navigation />}
 
         <section className={`${styles.content} ${styles.center}`}>
