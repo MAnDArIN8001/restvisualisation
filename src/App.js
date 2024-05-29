@@ -11,6 +11,7 @@ import ReportsPage from "./Components/Pages/ReportsPage";
 import InventarisationPage from "./Components/Pages/InventarisationPage";
 import RemovingPage from "./Components/Pages/RemovingPage";
 import OrganizationPage from "./Components/Pages/OrganizationPage";
+import ErrorPage from "./Components/Pages/ErrorPage";
 
 import OrganizationsPart from "./Components/OrganizationViews/OrganizationsPart";
 import StocksPart from "./Components/OrganizationViews/StocksPart";
@@ -48,6 +49,7 @@ const router = createBrowserRouter([
       { path: "racks", element: <RacksPart /> },
     ],
   },
+  { path: "*", element: <ErrorPage /> },
 ]);
 
 function App() {
