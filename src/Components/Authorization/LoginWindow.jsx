@@ -66,7 +66,7 @@ export default function LoginWindow() {
       <div className={styles.base_field}>
         <p>Пароль</p>
         <input
-          type="text"
+          type="password"
           placeholder="Введите парлоль"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
