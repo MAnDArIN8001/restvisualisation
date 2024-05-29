@@ -69,6 +69,7 @@ export default function SigninWindow() {
 
     if (!data?.error) {
       navigate("/");
+      window.location.reload();
     }
   };
 

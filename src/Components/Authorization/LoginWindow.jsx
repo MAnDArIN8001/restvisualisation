@@ -45,6 +45,7 @@ export default function LoginWindow() {
 
     if (!data?.error) {
       navigate("/");
+      window.location.reload();
     }
   };
 
