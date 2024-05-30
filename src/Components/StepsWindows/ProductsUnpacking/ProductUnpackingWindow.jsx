@@ -12,11 +12,8 @@ import closeButtonSvg from "../../../Assets/Pictures/иконки/close_24dp_FIL
 export default function ProductUnpackingWindow() {
   const [currentStep, setCurrentStep] = useState(0);
 
-  const [countValue, setCountValue] = useState(0);
-  const [secondStepParams, setSecondStepParams] = useState({
-    id: "",
-    nds: "",
-  });
+  const [countValue, setCountValue] = useState("");
+  const [secondStepParams, setSecondStepParams] = useState([]);
   const [thirdStepParams, setThirdStepParams] = useState({
     type: "",
     data: {},
@@ -28,12 +25,7 @@ export default function ProductUnpackingWindow() {
 
   const NextButtonValidation = () => {
     if (currentStep === 0) {
-      setIsValid(countValue.count.trim().length !== 0);
-    } else if (currentStep === 1) {
-      setIsValid(
-        secondStepParams.id.trim().length !== 0 &&
-          secondStepParams.nds.trim().length !== 0
-      );
+      setIsValid(countValue.trim().length !== 0);
     }
   };
 
@@ -47,9 +39,9 @@ export default function ProductUnpackingWindow() {
     />,
     <SecondPart
       setCurrentStep={setCurrentStep}
-      navigate={navigate}
+      countValue={countValue}
       setSecondStepParams={setSecondStepParams}
-      isValid={isValid}
+      secondStepParams={secondStepParams}
       key={1}
     />,
     <ThirdPart

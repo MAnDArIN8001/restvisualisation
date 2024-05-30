@@ -78,6 +78,19 @@
   }
 }
 
+.counter {
+  display: flex;
+
+  flex-direction: column;
+  gap: 10px;
+
+  & p {
+    font-size: 1.2em;
+
+    margin: 0;
+  }
+}
+
 .cells_stats {
   display: flex;
 

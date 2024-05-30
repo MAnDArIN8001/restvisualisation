@@ -3,41 +3,39 @@ import { useEffect, useState } from "react";
 import styles from "../../../Assets/Styles/Style.module.scss";
 
 export default function SecondPart({
-  navigate,
   countValue,
   setSecondStepParams,
+  secondStepParams,
   setCurrentStep,
-  isValid,
 }) {
   const [id, setId] = useState("");
   const [nds, setNds] = useState("");
   const [isNextValid, setIsNextValid] = useState(false);
   const [isFieldValid, setIsValid] = useState(false);
 
-  const [propsArray, setPropsArray] = useState([]);
+  const [propsArray, setPropsArray] = useState(secondStepParams);
 
   useEffect(() => {
-    let newParams = {
-      id,
-      nds,
-    };
-
     setIsValid(id.trim().length !== 0 && nds.trim().length !== 0);
-
-    setSecondStepParams(newParams);
   }, [id, nds]);
 
   useEffect(() => {
     setIsNextValid(propsArray.length >= countValue);
+    setSecondStepParams([...propsArray]);
   }, [propsArray]);
 
   return (
     <main className={`${styles.container} ${styles.partial_window}`}>
-      <button className={styles.active} onClick={() => navigate("/remark")}>
+      <button className={styles.active} onClick={() => setCurrentStep(0)}>
         Назад
       </button>
 
       <section className={`${styles.input_field} ${styles.large_field}`}>
+        <div className={styles.counter}>
+          <p>Количество позиций: {countValue}</p>
+          <p>Введено позиций: {propsArray.length}</p>
+        </div>
+
         <div className={styles.base_field}>
           <p>Введите уникальный номер</p>
           <input
@@ -65,7 +63,7 @@ export default function SecondPart({
         <button
           className={isFieldValid ? styles.active : ""}
           onClick={() => {
-            if (propsArray.length < countValue) return;
+            if (propsArray.length > countValue) return;
 
             let newValue = {
               number: id,
@@ -73,6 +71,8 @@ export default function SecondPart({
             };
 
             setPropsArray([...propsArray, newValue]);
+            setId("");
+            setNds("");
           }}
         >
           Добавить
@@ -81,7 +81,11 @@ export default function SecondPart({
 
       <button
         className={isNextValid ? styles.active : ""}
-        onClick={() => setCurrentStep(2)}
+        onClick={() => {
+          if (!isNextValid) return;
+
+          setCurrentStep(2);
+        }}
       >
         Далее
       </button>

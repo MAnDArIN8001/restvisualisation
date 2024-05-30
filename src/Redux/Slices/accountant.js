@@ -7,6 +7,7 @@ export const fetchInventory = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.put("accountant/inventory", params.ships, {
+        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
         params: { userId: params.id },
       });
 
@@ -31,6 +32,7 @@ export const fetchRevaluation = createAsyncThunk(
     try {
       const response = await axios.get("accountant/revaluation", {
         params: { userId: params.id },
+        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
       });
 
       if (!response.status) {
@@ -52,7 +54,10 @@ export const writeOff = createAsyncThunk(
   "accountant/writeoff",
   async (params, { rejectWithValue }) => {
     try {
-      const response = await axios.put("accountant/writeoff");
+      const response = await axios.put("accountant/writeoff", params.products, {
+        params: { userId: params.userId },
+        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
+      });
 
       if (!response.status) {
         throw new Error("ServerError: 500");
@@ -75,6 +80,7 @@ export const createRevaluation = createAsyncThunk(
     try {
       const response = await axios.put("accountant/revaluation", {
         params: { userId: params?.id },
+        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
       });
 
       if (!response.status) {

@@ -6,7 +6,7 @@ import { createTable } from "../../../Redux/Slices/worker";
 
 import styles from "../../../Assets/Styles/Style.module.scss";
 
-export default function SecondPart({ setStep, countValue }) {
+export default function SecondPart({ setStep, countValue, resultArrayState }) {
   const [isValid, setIsValid] = useState(false);
   const [name, setName] = useState("");
   const [sizing, setSizing] = useState("");
@@ -18,7 +18,7 @@ export default function SecondPart({ setStep, countValue }) {
   const [weight, setWeight] = useState("");
 
   const [currentUser, setCurrentUser] = useState({});
-  const [resultArray, setResultArray] = useState([]);
+  const [resultArray, setResultArray] = useState(resultArrayState.value);
 
   const [isValidNext, setIsValidNext] = useState(false);
 
@@ -32,8 +32,7 @@ export default function SecondPart({ setStep, countValue }) {
 
   useEffect(() => {
     setIsValidNext(resultArray.length >= countValue);
-
-    console.log(isValidNext, resultArray, countValue);
+    resultArrayState.set([...resultArray]);
   }, [resultArray]);
 
   useEffect(() => {
@@ -157,6 +156,8 @@ export default function SecondPart({ setStep, countValue }) {
         <button
           className={isValid ? styles.active : ""}
           onClick={() => {
+            if (!isValid) return;
+
             let params = {
               id: currentUser.id,
               length,
@@ -182,7 +183,7 @@ export default function SecondPart({ setStep, countValue }) {
       <button
         className={`${isValidNext ? styles.active : ""}`}
         onClick={() => {
-          if (resultArray.length !== countValue) return;
+          if (!isValidNext) return;
 
           dispatch(createTable(resultArray));
           setStep(0);

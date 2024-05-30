@@ -92,7 +92,7 @@ export default function ProductResiavingPage() {
             className={styles.blue_button}
             onClick={() => navigate("/resiaving/steps")}
           >
-            принять товар
+            Принять товар
           </button>
         </section>
       </main>

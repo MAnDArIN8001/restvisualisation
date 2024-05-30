@@ -7,6 +7,7 @@ export const createTable = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.post("worker/create", params.products, {
+        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
         params: { userId: params.id },
       });
 
@@ -30,6 +31,7 @@ export const fetchTable = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.get("worker", {
+        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
         params: { userId: params.id },
       });
 
@@ -52,7 +54,10 @@ export const shipProduct = createAsyncThunk(
   "worker/shipProduct",
   async (params, { rejectWithValue }) => {
     try {
-      const response = await axios.delete("worker/ship", params);
+      const response = await axios.delete("worker/ship", params.products, {
+        params: { userId: params.userId },
+        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
+      });
 
       if (!response.status) {
         throw new Error("ServerError: 500");

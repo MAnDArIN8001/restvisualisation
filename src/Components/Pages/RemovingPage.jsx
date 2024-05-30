@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+
+import { writeOff } from "../../Redux/Slices/accountant";
 
 import Header from "../Header/Header";
 import Navigation from "../Navgation/Navigation";
@@ -16,6 +19,12 @@ export default function RemovingPage() {
     second_name: "",
     title: "buhgalter",
   });
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setCurrentUser(JSON.parse(localStorage?.user));
+  }, []);
 
   const OpenMenu = () => {
     window.scroll(0, 0);
@@ -88,7 +97,18 @@ export default function RemovingPage() {
             </p>
           </section>
 
-          <button className={styles.blue_button}>Завершить</button>
+          <button
+            className={styles.blue_button}
+            onClick={() => {
+              if (products.length === 0) return;
+
+              dispatch(
+                writeOff({ userId: currentUser.id, products: products })
+              );
+            }}
+          >
+            Завершить
+          </button>
         </section>
       </main>
     </>

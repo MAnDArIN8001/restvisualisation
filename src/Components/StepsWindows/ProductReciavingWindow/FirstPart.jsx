@@ -4,14 +4,14 @@ import styles from "../../../Assets/Styles/Style.module.scss";
 
 export default function FirstPart({
   navigate,
-  setCountValue,
+  countValueState,
   setCurrentStep,
   isValid,
 }) {
-  const [countValue, setCountValueInner] = useState("");
+  const [countValue, setCountValueInner] = useState(countValueState.value);
 
   useEffect(() => {
-    setCountValue(countValue);
+    countValueState.set(countValue);
   }, [countValue]);
 
   return (
@@ -36,7 +36,11 @@ export default function FirstPart({
 
       <button
         className={isValid ? styles.active : ""}
-        onClick={() => setCurrentStep(1)}
+        onClick={() => {
+          if (!isValid) return;
+
+          setCurrentStep(1);
+        }}
       >
         Далее
       </button>

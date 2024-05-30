@@ -6,7 +6,9 @@ export const createOrganization = createAsyncThunk(
   "director/createOrganization",
   async (params, { rejectWithValue }) => {
     try {
-      const response = await axios.post("accountant/organization", params);
+      const response = await axios.post("accountant/organization", params, {
+        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
+      });
 
       if (!response.status) {
         throw new Error("ServerError: 500");
@@ -27,7 +29,9 @@ export const createWarehouse = createAsyncThunk(
   "director/createWarehouse",
   async (params, { rejectWithValue }) => {
     try {
-      const response = await axios.post("director/warehouse", params);
+      const response = await axios.post("director/warehouse", params, {
+        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
+      });
 
       if (!response.status) {
         throw new Error("ServerError: 500");
@@ -48,7 +52,9 @@ export const createRack = createAsyncThunk(
   "director/createRack",
   async (params, { rejectWithValue }) => {
     try {
-      const response = await axios.post("director/rack", params);
+      const response = await axios.post("director/rack", params, {
+        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
+      });
 
       if (!response.status) {
         throw new Error("ServerError: 500");
@@ -72,6 +78,7 @@ export const fetchDocs = createAsyncThunk(
       const { accepted, writeoff, nonverified, userId } = params;
 
       const response = await axios.get("director/docs", {
+        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
         params: { accepted, writeoff, nonverified, userId },
       });
 

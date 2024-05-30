@@ -34,7 +34,7 @@ export default function ThirdPart({
 
   return (
     <main className={`${styles.container} ${styles.partial_window}`}>
-      <button className={styles.active} onClick={() => navigate("/remark")}>
+      <button className={styles.active} onClick={() => setCurrentStep(1)}>
         Назад
       </button>
 
@@ -44,7 +44,7 @@ export default function ThirdPart({
             type="checkbox"
             id="tth"
             checked={currentType === "tth"}
-            onClick={() => setCurrentType("tth")}
+            onChange={() => setCurrentType("tth")}
           />
           <label htmlFor="tth">TTH</label>
         </div>
@@ -54,7 +54,7 @@ export default function ThirdPart({
             type="checkbox"
             id="th"
             checked={currentType === "th"}
-            onClick={() => setCurrentType("th")}
+            onChange={() => setCurrentType("th")}
           />
           <label htmlFor="th">TH</label>
         </div>

@@ -7,7 +7,7 @@ export default function THField() {
   const [adress, setAdress] = useState("");
   const [reazone, setReazone] = useState("");
   const [aproovedBy, setAproovedBy] = useState("");
-  const [id, setId] = useState;
+  const [id, setId] = useState("");
 
   return (
     <section className={`${styles.input_field} ${styles.large_field}`}>

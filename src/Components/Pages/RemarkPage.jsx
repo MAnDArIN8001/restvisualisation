@@ -93,7 +93,7 @@ export default function RemarkPage() {
               navigate("/remark/steps");
             }}
           >
-            Отгрузить товар
+            Переоценить
           </button>
         </section>
       </main>

@@ -11,16 +11,15 @@ export default function FirstPart({
   const [countValue, setCountValueInner] = useState("");
 
   useEffect(() => {
-    let newParams = {
-      count: countValue,
-    };
-
-    setCountValue(newParams);
+    setCountValue(countValue);
   }, [countValue]);
 
   return (
     <main className={`${styles.container} ${styles.partial_window}`}>
-      <button className={styles.active} onClick={() => navigate("/remark")}>
+      <button
+        className={styles.active}
+        onClick={() => navigate("/redirecting")}
+      >
         Назад
       </button>
 
@@ -40,7 +39,11 @@ export default function FirstPart({
 
       <button
         className={isValid ? styles.active : ""}
-        onClick={() => setCurrentStep(1)}
+        onClick={() => {
+          if (!isValid) return;
+
+          setCurrentStep(1);
+        }}
       >
         Далее
       </button>

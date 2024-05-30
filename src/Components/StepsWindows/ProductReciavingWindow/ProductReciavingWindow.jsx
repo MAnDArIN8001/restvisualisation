@@ -13,6 +13,10 @@ export default function ProductReciavingWindow() {
   const [currentStep, setCurrentStep] = useState(0);
 
   const [countValue, setCountValue] = useState("");
+  const [contranctId, setContractId] = useState("");
+
+  const [resultArray, setResultArray] = useState([]);
+
   const [isValid, setIsValid] = useState(false);
 
   const navigate = useNavigate();
@@ -28,12 +32,18 @@ export default function ProductReciavingWindow() {
   const stepsElements = [
     <FirstPart
       setCurrentStep={setCurrentStep}
-      setCountValue={setCountValue}
+      countValueState={{ set: setCountValue, value: countValue }}
+      contractIdState={{ set: setContractId, value: contranctId }}
       isValid={isValid}
       navigate={navigate}
       key={0}
     />,
-    <SecondPart setStep={setCurrentStep} countValue={countValue} key={1} />,
+    <SecondPart
+      setStep={setCurrentStep}
+      countValue={countValue}
+      resultArrayState={{ set: setResultArray, value: resultArray }}
+      key={1}
+    />,
   ];
 
   const GetCurrentStepWindow = () => {

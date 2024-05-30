@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+
+import { tryGetUser } from "../../Redux/Slices/auth";
 
 import Header from "../Header/Header";
 import Navigation from "../Navgation/Navigation";
@@ -9,12 +12,15 @@ import styles from "../../Assets/Styles/Style.module.scss";
 
 export default function OrganizationPage() {
   const [burgerState, setBurgerState] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
-  const currentUser = {
-    first_namme: "",
-    second_name: "",
-    title: "buhgalter",
-  };
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(tryGetUser());
+
+    setCurrentUser(JSON.parse(localStorage?.user));
+  }, []);
 
   const OpenMenu = () => {
     window.scroll(0, 0);
