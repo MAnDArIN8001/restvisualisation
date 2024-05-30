@@ -4,12 +4,12 @@ import styles from "../../../Assets/Styles/Style.module.scss";
 
 export default function FirstPart({
   navigate,
-  setFirstStepParams,
+  firstStepParam,
   setCurrentStep,
   isValid,
 }) {
-  const [countValue, setCountValueInner] = useState("");
-  const [contractId, setContractId] = useState("");
+  const [countValue, setCountValueInner] = useState(firstStepParam.value.count);
+  const [contractId, setContractId] = useState(firstStepParam.value.contractId);
 
   useEffect(() => {
     let newParams = {
@@ -17,7 +17,7 @@ export default function FirstPart({
       contractId: contractId,
     };
 
-    setFirstStepParams(newParams);
+    firstStepParam.set(newParams);
   }, [countValue, contractId]);
 
   return (
@@ -31,6 +31,7 @@ export default function FirstPart({
           <p>Введите число позиций</p>
           <input
             type="number"
+            min={0}
             placeholder="Количество"
             value={countValue}
             onChange={(e) => {
@@ -43,6 +44,7 @@ export default function FirstPart({
           <p>Введите номер договора</p>
           <input
             type="number"
+            min={0}
             placeholder="Номер договора"
             value={contractId}
             onChange={(e) => {

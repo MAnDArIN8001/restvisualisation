@@ -12,7 +12,7 @@ import styles from "../../Assets/Styles/Style.module.scss";
 export default function RemovingPage() {
   const [products, setProducts] = useState([]);
   const [currentId, setCurrentId] = useState("");
-  const [reasone, setReasone] = useState("");
+  const [reasone, setReasone] = useState("Передача");
   const [burgerState, setBurgerState] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     first_namme: "",
@@ -67,26 +67,40 @@ export default function RemovingPage() {
             />
 
             <p>Укажите причину</p>
-            <input
-              type="text"
-              placeholder="Причина"
+            <select
+              name="reasone"
+              id="reasone"
               value={reasone}
-              onChange={(e) => setReasone(e.target.value)}
-            />
+              onChange={(e) => {
+                setReasone(e.target.value);
+              }}
+            >
+              <option value="срок годности">Срок годности</option>
+              <option value="брак">Брак</option>
+              <option value="передача">Передача</option>
+            </select>
 
             <button
               className={`${styles.blue_button} ${styles.small}`}
               onClick={() => {
+                console.log(
+                  currentId.trim().length === 0,
+                  !/^\d+(\.\d+)?$/.test(currentId),
+                  reasone.trim().length === 0,
+                  products.find((num) => num.number === currentId.trim())
+                );
                 if (
-                  currentId.trim().length !== 0 ||
-                  /^\d+(\.\d+)?$/.test(currentId) ||
-                  reasone.trim().length !== 0
+                  currentId.trim().length === 0 ||
+                  !/^\d+(\.\d+)?$/.test(currentId) ||
+                  reasone.trim().length === 0 ||
+                  products.find((num) => num.number === currentId.trim())
                 ) {
-                  setProducts([...products, { number: currentId, reasone }]);
-
-                  setCurrentId("");
-                  setReasone("");
+                  return;
                 }
+
+                setProducts([...products, { number: currentId, reasone }]);
+
+                setCurrentId("");
               }}
             >
               Подтвердить
@@ -105,6 +119,8 @@ export default function RemovingPage() {
               dispatch(
                 writeOff({ userId: currentUser.id, products: products })
               );
+
+              setProducts([]);
             }}
           >
             Завершить

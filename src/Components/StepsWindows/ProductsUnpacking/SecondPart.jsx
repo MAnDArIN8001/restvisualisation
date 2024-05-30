@@ -63,7 +63,7 @@ export default function SecondPart({
         <button
           className={isFieldValid ? styles.active : ""}
           onClick={() => {
-            if (propsArray.length > countValue) return;
+            if (propsArray.length >= countValue) return;
 
             let newValue = {
               number: id,

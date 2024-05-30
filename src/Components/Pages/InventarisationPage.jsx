@@ -69,7 +69,8 @@ export default function InventarisationPage() {
               onClick={() => {
                 if (
                   currentId.trim().length === 0 ||
-                  !/^\d+(\.\d+)?$/.test(currentId)
+                  !/^\d+(\.\d+)?$/.test(currentId) ||
+                  products.find((num) => num === currentId.trim())
                 ) {
                   return;
                 }

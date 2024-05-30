@@ -54,7 +54,7 @@ export default function OrganizationPage() {
           <h1>О организации</h1>
 
           <section className={styles.organization_navigation}>
-            <Link to="/organization/org">Организации</Link>
+            <Link to="/organization/org">Организация</Link>
             <Link to="/organization/stores">Склады</Link>
             <Link to="/organization/racks">Стеллажи</Link>
           </section>

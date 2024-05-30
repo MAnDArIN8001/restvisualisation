@@ -6,7 +6,12 @@ import { createTable } from "../../../Redux/Slices/worker";
 
 import styles from "../../../Assets/Styles/Style.module.scss";
 
-export default function SecondPart({ setStep, countValue, resultArrayState }) {
+export default function SecondPart({
+  setStep,
+  countValue,
+  setCountValue,
+  resultArrayState,
+}) {
   const [isValid, setIsValid] = useState(false);
   const [name, setName] = useState("");
   const [sizing, setSizing] = useState("");
@@ -93,6 +98,7 @@ export default function SecondPart({ setStep, countValue, resultArrayState }) {
           <p>Введите количество</p>
           <input
             type="number"
+            min={0}
             placeholder="Колисество"
             value={count}
             onChange={(e) => setCount(e.target.value)}
@@ -103,6 +109,7 @@ export default function SecondPart({ setStep, countValue, resultArrayState }) {
           <p>Введите стоимость</p>
           <input
             type="number"
+            min={0}
             placeholder="Стоимость"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
@@ -113,6 +120,7 @@ export default function SecondPart({ setStep, countValue, resultArrayState }) {
           <p>Введите вес</p>
           <input
             type="number"
+            min={0}
             placeholder="Вес"
             value={weight}
             onChange={(e) => {
@@ -126,6 +134,7 @@ export default function SecondPart({ setStep, countValue, resultArrayState }) {
             <p>Введите длинну</p>
             <input
               type="number"
+              min={0}
               placeholder="Длинна"
               value={length}
               onChange={(e) => setLength(e.target.value)}
@@ -136,6 +145,7 @@ export default function SecondPart({ setStep, countValue, resultArrayState }) {
             <p>Введите ширину</p>
             <input
               type="number"
+              min={0}
               placeholder="Ширина"
               value={width}
               onChange={(e) => setWidth(e.target.value)}
@@ -147,6 +157,7 @@ export default function SecondPart({ setStep, countValue, resultArrayState }) {
             <input
               type="number"
               placeholder="Высота"
+              min={0}
               value={height}
               onChange={(e) => setHeight(e.target.value)}
             />
@@ -156,7 +167,8 @@ export default function SecondPart({ setStep, countValue, resultArrayState }) {
         <button
           className={isValid ? styles.active : ""}
           onClick={() => {
-            if (!isValid) return;
+            console.log(resultArray.length);
+            if (!isValid || resultArray.length >= countValue) return;
 
             let params = {
               id: currentUser.id,
@@ -186,6 +198,8 @@ export default function SecondPart({ setStep, countValue, resultArrayState }) {
           if (!isValidNext) return;
 
           dispatch(createTable(resultArray));
+          setCountValue("");
+          resultArrayState.set([]);
           setStep(0);
         }}
       >

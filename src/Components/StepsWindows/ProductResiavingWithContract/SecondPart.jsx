@@ -5,7 +5,7 @@ import { createTable } from "../../../Redux/Slices/worker";
 
 import styles from "../../../Assets/Styles/Style.module.scss";
 
-export default function SecondPart({ setStep, firstParams }) {
+export default function SecondPart({ setStep, firstParams, secondStepParam }) {
   const [isValid, setIsValid] = useState(false);
   const [isValidNext, setIsValidNext] = useState(false);
   const [id, setId] = useState("");
@@ -22,9 +22,8 @@ export default function SecondPart({ setStep, firstParams }) {
   }, [id, price]);
 
   useEffect(() => {
-    setIsValidNext(paramsArray.length >= firstParams.count);
-
-    console.log(firstParams.count);
+    setIsValidNext(paramsArray.length >= firstParams.value.count);
+    secondStepParam.set([...paramsArray]);
   }, [paramsArray]);
 
   const clearFields = () => {
@@ -64,7 +63,8 @@ export default function SecondPart({ setStep, firstParams }) {
         <button
           className={isValid ? styles.active : ""}
           onClick={() => {
-            if (paramsArray.length === firstParams.count) return;
+            if (paramsArray.length >= firstParams.value.count || !isValid)
+              return;
 
             let newParam = {
               amount: firstParams?.count,
@@ -84,9 +84,11 @@ export default function SecondPart({ setStep, firstParams }) {
       <button
         className={`${isValidNext ? styles.active : ""}`}
         onClick={() => {
-          if (paramsArray.length < firstParams.count) return;
+          if (paramsArray.length < firstParams.value.count) return;
 
           dispatch(createTable(paramsArray));
+          firstParams.set({ count: "", contractId: "" });
+          secondStepParam.set([]);
           setStep(0);
         }}
       >

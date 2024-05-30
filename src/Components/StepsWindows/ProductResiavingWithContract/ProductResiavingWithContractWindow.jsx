@@ -15,6 +15,7 @@ export default function ProductReciavingWithContractWindow() {
     count: "",
     contractId: "",
   });
+  const [secondStepParams, setSecondStepParams] = useState([]);
 
   const [isValid, setIsValid] = useState(false);
 
@@ -35,13 +36,14 @@ export default function ProductReciavingWithContractWindow() {
     <FirstPart
       navigate={navigate}
       setCurrentStep={setCurrentStep}
-      setFirstStepParams={setFirstStepParams}
+      firstStepParam={{ set: setFirstStepParams, value: firstStepParams }}
       isValid={isValid}
       key={0}
     />,
     <SecondPart
       setStep={setCurrentStep}
-      firstParams={firstStepParams}
+      firstParams={{ set: setFirstStepParams, value: firstStepParams }}
+      secondStepParam={{ set: setSecondStepParams, value: secondStepParams }}
       key={1}
     />,
   ];
@@ -69,7 +71,7 @@ export default function ProductReciavingWithContractWindow() {
               style={{ cursor: "pointer" }}
               onClick={() => navigate("/remark")}
             />
-            <h1>Прием товара</h1>
+            <h1>Переоценка товара</h1>
           </div>
         </nav>
       </header>

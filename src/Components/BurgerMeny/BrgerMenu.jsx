@@ -10,15 +10,20 @@ import updateSystemSvg from "../../Assets/Pictures/иконки/обновить
 import removingSvg from "../../Assets/Pictures/иконки/мусорка.svg";
 import factorySvg from "../../Assets/Pictures/иконки/factory_et5rhm0ii166.svg";
 import closeSvg from "../../Assets/Pictures/иконки/close_24dp_FILL0_wght400_GRAD0_opsz24.svg";
+import { useEffect, useState } from "react";
 
 export default function BurgerMenu({ currentState, setters }) {
-  const navigate = useNavigate();
-
-  const currentUser = {
+  const [currentUser, setCurrentUser] = useState({
     first_namme: "",
     second_name: "",
     title: "director",
-  };
+  });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setCurrentUser(JSON.parse(localStorage?.user));
+  }, []);
 
   const navigationButtonnsByRole = [
     {

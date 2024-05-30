@@ -13,8 +13,6 @@ export default function ProductReciavingWindow() {
   const [currentStep, setCurrentStep] = useState(0);
 
   const [countValue, setCountValue] = useState("");
-  const [contranctId, setContractId] = useState("");
-
   const [resultArray, setResultArray] = useState([]);
 
   const [isValid, setIsValid] = useState(false);
@@ -33,7 +31,6 @@ export default function ProductReciavingWindow() {
     <FirstPart
       setCurrentStep={setCurrentStep}
       countValueState={{ set: setCountValue, value: countValue }}
-      contractIdState={{ set: setContractId, value: contranctId }}
       isValid={isValid}
       navigate={navigate}
       key={0}
@@ -41,6 +38,7 @@ export default function ProductReciavingWindow() {
     <SecondPart
       setStep={setCurrentStep}
       countValue={countValue}
+      setCountValue={setCountValue}
       resultArrayState={{ set: setResultArray, value: resultArray }}
       key={1}
     />,
