@@ -167,7 +167,16 @@ export default function SecondPart({
         <button
           className={isValid ? styles.active : ""}
           onClick={() => {
-            console.log(resultArray.length);
+            let inputs = document.querySelectorAll("input");
+
+            for (let input of inputs) {
+              if (input.value.trim().length === 0) {
+                input.classList.add(styles.wrong);
+              } else {
+                input.classList.remove(styles.wrong);
+              }
+            }
+
             if (!isValid || resultArray.length >= countValue) return;
 
             let params = {

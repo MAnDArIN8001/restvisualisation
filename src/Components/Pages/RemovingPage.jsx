@@ -12,7 +12,7 @@ import styles from "../../Assets/Styles/Style.module.scss";
 export default function RemovingPage() {
   const [products, setProducts] = useState([]);
   const [currentId, setCurrentId] = useState("");
-  const [reasone, setReasone] = useState("Передача");
+  const [reasone, setReasone] = useState("срок годности");
   const [burgerState, setBurgerState] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     first_namme: "",
@@ -83,12 +83,16 @@ export default function RemovingPage() {
             <button
               className={`${styles.blue_button} ${styles.small}`}
               onClick={() => {
-                console.log(
-                  currentId.trim().length === 0,
-                  !/^\d+(\.\d+)?$/.test(currentId),
-                  reasone.trim().length === 0,
-                  products.find((num) => num.number === currentId.trim())
-                );
+                let inputs = document.querySelectorAll("input");
+
+                for (let input of inputs) {
+                  if (input.value.trim().length === 0) {
+                    input.classList.add(styles.wrong);
+                  } else {
+                    input.classList.remove(styles.wrong);
+                  }
+                }
+
                 if (
                   currentId.trim().length === 0 ||
                   !/^\d+(\.\d+)?$/.test(currentId) ||

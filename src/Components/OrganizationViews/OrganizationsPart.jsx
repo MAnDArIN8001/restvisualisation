@@ -49,6 +49,16 @@ export default function OrganizationsPart() {
       <button
         className={`${styles.blue_button} ${styles.full_size} ${styles.left_side}`}
         onClick={() => {
+          let inputs = document.querySelectorAll("input");
+
+          for (let input of inputs) {
+            if (input.value.trim().length === 0) {
+              input.classList.add(styles.wrong);
+            } else {
+              input.classList.remove(styles.wrong);
+            }
+          }
+
           if (
             inn.trim().length === 0 ||
             name.trim().length === 0 ||
