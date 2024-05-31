@@ -194,7 +194,8 @@
 
     cursor: pointer;
 
-    & img {
+    & img,
+    svg {
       width: 26px;
       height: 26px;
     }
