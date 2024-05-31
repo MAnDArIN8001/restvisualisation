@@ -53,6 +53,10 @@
     width: 100% !important;
   }
 
+  .burger_menu {
+    display: flex;
+  }
+
   .partial_window {
     gap: 15px;
   }
@@ -74,6 +78,10 @@
     & button {
       width: 30vw;
     }
+  }
+
+  .burger_menu {
+    display: flex;
   }
 
   .logo {
