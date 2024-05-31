@@ -10,7 +10,7 @@ export const fetchInventory = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
         },
-        params: { userId: params.id },
+        params: { userId: Number(params.id) },
       });
 
       if (!response.status) {
@@ -36,7 +36,7 @@ export const fetchRevaluation = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
         },
-        params: { userId: params.id },
+        params: { userId: Number(params.id) },
       });
 
       if (!response.status) {
@@ -62,7 +62,7 @@ export const writeOff = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
         },
-        params: { userId: params.userId },
+        params: { userId: Number(params.id) },
       });
 
       if (!response.status) {
@@ -88,7 +88,7 @@ export const createRevaluation = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
         },
-        params: { userId: params?.id },
+        params: { userId: Number(params.id) },
       });
 
       if (!response.status) {

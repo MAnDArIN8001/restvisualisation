@@ -11,7 +11,7 @@ export const createTable = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
         },
-        params: { userId: params.id },
+        params: { userId: Number(params.id) },
       });
 
       if (!response.status) {
@@ -37,7 +37,7 @@ export const fetchTable = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
         },
-        params: { userId: params.id },
+        params: { userId: Number(params.id) },
       });
 
       if (!response.status) {
@@ -63,7 +63,7 @@ export const shipProduct = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
         },
-        params: { userId: params.userId },
+        params: { userId: Number(params.id) },
       });
 
       if (!response.status) {
