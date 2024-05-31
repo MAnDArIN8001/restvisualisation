@@ -2,14 +2,6 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "../../Assets/Styles/Style.module.scss";
 
-import boxSvg from "../../Assets/Pictures/иконки/коробка открыта.svg";
-import documentSvg from "../../Assets/Pictures/иконки/документ.svg";
-import pacageSvg from "../../Assets/Pictures/иконки/коробка.svg";
-import qualityControlSvg from "../../Assets/Pictures/иконки/лупа.svg";
-import updateSystemSvg from "../../Assets/Pictures/иконки/обновить.svg";
-import removingSvg from "../../Assets/Pictures/иконки/мусорка.svg";
-import factorySvg from "../../Assets/Pictures/иконки/factory_et5rhm0ii166.svg";
-import closeSvg from "../../Assets/Pictures/иконки/close_24dp_FILL0_wght400_GRAD0_opsz24.svg";
 import { useEffect, useState } from "react";
 
 export default function BurgerMenu({ currentState, setters }) {
@@ -296,7 +288,15 @@ export default function BurgerMenu({ currentState, setters }) {
       <div className={styles.burger_header}>
         <h1>WMS</h1>
 
-        <img onClick={setters.CloseMenu} src={closeSvg} alt="close:img" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="black"
+        >
+          <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+        </svg>
       </div>
       {GetButtonsByCurrentRole()}
     </section>
