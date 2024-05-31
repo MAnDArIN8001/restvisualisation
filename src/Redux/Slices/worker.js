@@ -6,6 +6,7 @@ export const createTable = createAsyncThunk(
   "worker/createTable",
   async (params, { rejectWithValue }) => {
     try {
+      console.log(params, JSON.parse(localStorage?.user)?.token);
       const response = await axios.post("worker/create", params.products, {
         headers: { Authorization: JSON.parse(localStorage?.user)?.token },
         params: { userId: params.id },

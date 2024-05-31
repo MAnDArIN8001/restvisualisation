@@ -77,8 +77,8 @@ export default function SecondPart({ setStep, firstParams, secondStepParam }) {
               return;
 
             let newParam = {
-              amount: firstParams?.count,
-              numberOfAgreement: firstParams?.contractId,
+              amount: firstParams?.value.count,
+              numberOfAgreement: firstParams?.value.contractId,
               number: id,
               cost: price,
             };
@@ -96,7 +96,12 @@ export default function SecondPart({ setStep, firstParams, secondStepParam }) {
         onClick={() => {
           if (paramsArray.length < firstParams.value.count) return;
 
-          dispatch(createTable(paramsArray));
+          dispatch(
+            createTable({
+              id: JSON.parse(localStorage?.user)?.id,
+              products: paramsArray,
+            })
+          );
           firstParams.set({ count: "", contractId: "" });
           secondStepParam.set([]);
           setStep(0);

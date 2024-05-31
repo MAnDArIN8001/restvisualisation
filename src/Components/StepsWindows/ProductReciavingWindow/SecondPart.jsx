@@ -176,7 +176,6 @@ export default function SecondPart({
                 input.classList.remove(styles.wrong);
               }
             }
-
             if (!isValid || resultArray.length >= countValue) return;
 
             let params = {
