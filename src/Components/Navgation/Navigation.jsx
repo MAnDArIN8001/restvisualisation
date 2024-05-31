@@ -20,7 +20,10 @@ export default function Navigation() {
   useEffect(() => {
     dispatch(tryGetUser());
 
-    setCurrentUser(JSON.parse(localStorage.user ?? null));
+    setCurrentUser(
+      JSON.parse(localStorage.user === null ? null : localStorage?.user)
+    );
+    console.log(currentUser);
   }, []);
 
   const navigationButtonnsByRole = [
