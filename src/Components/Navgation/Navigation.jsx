@@ -21,10 +21,6 @@ export default function Navigation() {
     );
   }, []);
 
-  useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
-
   const navigationButtonnsByRole = [
     {
       role: "accountant",

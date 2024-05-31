@@ -23,11 +23,12 @@ export default function ProductResiavingPage() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(tryGetUser());
+  useEffect(async () => {
+    await dispatch(tryGetUser());
 
     setCurrentUser(localStorage?.user);
 
+    console.log(currentUser);
     dispatch(fetchTable({ id: currentUser?.id }));
   }, []);
 

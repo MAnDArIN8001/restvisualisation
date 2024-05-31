@@ -33,6 +33,7 @@ export const fetchTable = createAsyncThunk(
   "worker/fetchTable",
   async (params, { rejectWithValue }) => {
     try {
+      console.log(params);
       const response = await axios.get("worker", {
         headers: {
           Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
