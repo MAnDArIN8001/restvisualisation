@@ -18,9 +18,9 @@ export const createTable = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = response.data;
+      const data = response.data.data;
 
-      localStorage.product = response.data;
+      localStorage.product = JSON.stringify(data);
 
       return data;
     } catch (error) {
@@ -44,9 +44,9 @@ export const fetchTable = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = JSON.parse(response.data);
+      const data = response.data.data;
 
-      localStorage.table = response.data;
+      localStorage.table = JSON.stringify(data);
 
       return data;
     } catch (error) {
@@ -70,9 +70,9 @@ export const shipProduct = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = response.data;
+      const data = response.data.data;
 
-      localStorage.ship = response.data;
+      localStorage.ship = JSON.stringify(data);
 
       return data;
     } catch (error) {

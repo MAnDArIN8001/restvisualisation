@@ -9,11 +9,7 @@ import styles from "../../Assets/Styles/Style.module.scss";
 export default function Navigation() {
   const navigate = useNavigate();
 
-  const [currentUser, setCurrentUser] = useState({
-    first_namme: "",
-    second_name: "",
-    title: "",
-  });
+  const [currentUser, setCurrentUser] = useState({});
 
   const dispatch = useDispatch();
 
@@ -23,8 +19,11 @@ export default function Navigation() {
     setCurrentUser(
       JSON.parse(localStorage.user === null ? null : localStorage?.user)
     );
-    console.log(currentUser);
   }, []);
+
+  useEffect(() => {
+    console.log(currentUser);
+  }, [currentUser]);
 
   const navigationButtonnsByRole = [
     {
@@ -275,6 +274,7 @@ export default function Navigation() {
   ];
 
   const GetButtonsByCurrentRole = () => {
+    console.log(currentUser);
     if (!currentUser) {
       return (
         <>

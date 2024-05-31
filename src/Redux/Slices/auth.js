@@ -14,7 +14,7 @@ export const fetchUserData = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = response.data;
+      const data = response.data.data;
 
       localStorage.user = JSON.stringify(data);
 
@@ -35,7 +35,7 @@ export const registerUserData = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = response.data;
+      const data = response.data.data;
 
       localStorage.user = JSON.stringify(data);
 

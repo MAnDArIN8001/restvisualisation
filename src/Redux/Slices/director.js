@@ -16,7 +16,7 @@ export const createOrganization = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = response.data;
+      const data = response.data.data;
 
       localStorage.inventory = JSON.stringify(data);
 
@@ -41,9 +41,9 @@ export const createWarehouse = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = response.data;
+      const data = response.data.data;
 
-      localStorage.organization = response.data;
+      localStorage.organization = JSON.stringify(data);
 
       return data;
     } catch (error) {
@@ -66,9 +66,9 @@ export const createRack = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = response.data;
+      const data = response.data.data;
 
-      localStorage.rack = response.data;
+      localStorage.rack = JSON.stringify(data);
 
       return data;
     } catch (error) {
@@ -94,9 +94,9 @@ export const fetchDocs = createAsyncThunk(
         throw new Error("ServerError: 500");
       }
 
-      const data = response.data;
+      const data = response.data.data;
 
-      localStorage.docs = response.data;
+      localStorage.docs = JSON.stringify(data);
 
       return data;
     } catch (error) {
