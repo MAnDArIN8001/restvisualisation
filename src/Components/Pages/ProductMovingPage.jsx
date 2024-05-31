@@ -32,7 +32,7 @@ export default function ProductMovingPage() {
     dispatch(fetchTable({ id: currentUser?.id }));
   }, [currentUser]);
 
-  const { table } = useSelector((state) => state.worker);
+  const { ship } = useSelector((state) => state.worker);
 
   const OpenMenu = () => {
     window.scroll(0, 0);
@@ -64,30 +64,31 @@ export default function ProductMovingPage() {
 
         <section className={styles.content}>
           <h1>Перемещение товара со склада</h1>
+          <div className={`${styles.table_content}`}>
+            <table>
+              <thead>
+                <tr>
+                  <td>Уникальный номер</td>
+                  <td>Наименование</td>
+                  <td>Дата поступления</td>
+                </tr>
+              </thead>
 
-          <table>
-            <thead>
-              <tr>
-                <td>Уникальный номер</td>
-                <td>Наименование</td>
-                <td>Дата поступления</td>
-              </tr>
-            </thead>
-
-            <tbody>
-              {table ? (
-                table?.map((item, index) => {
-                  <tr key={index}>
-                    <td>{item?.number}</td>
-                    <td>{item?.name}</td>
-                    <td>{item?.date}</td>
-                  </tr>;
-                })
-              ) : (
-                <></>
-              )}
-            </tbody>
-          </table>
+              <tbody>
+                {ship instanceof Array ? (
+                  ship?.map((item, index) => {
+                    <tr key={index}>
+                      <td>{item?.number}</td>
+                      <td>{item?.name}</td>
+                      <td>{item?.date}</td>
+                    </tr>;
+                  })
+                ) : (
+                  <></>
+                )}
+              </tbody>
+            </table>
+          </div>
 
           <button
             className={styles.blue_button}

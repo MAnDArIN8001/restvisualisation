@@ -34,7 +34,11 @@ export default function ProductResiavingPage() {
     dispatch(fetchTable({ id: currentUser?.id }));
   }, [currentUser]);
 
-  const { table } = useSelector((state) => state.worker);
+  const { ship } = useSelector((state) => state.worker);
+
+  useEffect(() => {
+    console.log(ship);
+  }, [ship]);
 
   const OpenMenu = () => {
     window.scroll(0, 0);
@@ -64,32 +68,33 @@ export default function ProductResiavingPage() {
       <main className={styles.container}>
         <Navigation />
 
-        <section className={styles.content}>
+        <section className={`${styles.content}`}>
           <h1>Получение товара</h1>
+          <div className={`${styles.table_content}`}>
+            <table>
+              <thead>
+                <tr>
+                  <td>Уникальный номер</td>
+                  <td>Наименование</td>
+                  <td>Дата поступления</td>
+                </tr>
+              </thead>
 
-          <table>
-            <thead>
-              <tr>
-                <td>Уникальный номер</td>
-                <td>Наименование</td>
-                <td>Дата поступления</td>
-              </tr>
-            </thead>
-
-            <tbody>
-              {table ? (
-                table?.map((item, index) => {
-                  <tr key={index}>
-                    <td>{item?.number}</td>
-                    <td>{item?.name}</td>
-                    <td>{item?.date}</td>
-                  </tr>;
-                })
-              ) : (
-                <></>
-              )}
-            </tbody>
-          </table>
+              <tbody>
+                {ship instanceof Array ? (
+                  ship?.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item?.number}</td>
+                      <td>{item?.name}</td>
+                      <td>{item?.date}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <></>
+                )}
+              </tbody>
+            </table>
+          </div>
 
           <button
             className={styles.blue_button}

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchRevaluation } from "../../Redux/Slices/accountant";
+import { fetchTable } from "../../Redux/Slices/worker";
 import { tryGetUser } from "../../Redux/Slices/auth";
 
 import Header from "../Header/Header";
@@ -29,10 +29,10 @@ export default function RemarkPage() {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchRevaluation({ id: currentUser?.id }));
+    dispatch(fetchTable({ id: currentUser?.id }));
   }, [currentUser]);
 
-  const { reavaluation } = useSelector((state) => state.accountant);
+  const { ship } = useSelector((state) => state.worker);
 
   const OpenMenu = () => {
     window.scroll(0, 0);
@@ -65,29 +65,31 @@ export default function RemarkPage() {
         <section className={styles.content}>
           <h1>Переоценка товара</h1>
 
-          <table>
-            <thead>
-              <tr>
-                <td>Уникальный номер</td>
-                <td>Наименование</td>
-                <td>Дата поступления</td>
-              </tr>
-            </thead>
+          <div className={`${styles.table_content}`}>
+            <table>
+              <thead>
+                <tr>
+                  <td>Уникальный номер</td>
+                  <td>Наименование</td>
+                  <td>Дата поступления</td>
+                </tr>
+              </thead>
 
-            <tbody>
-              {reavaluation ? (
-                reavaluation?.map((item, index) => {
-                  <tr key={index}>
-                    <td>{item?.number}</td>
-                    <td>{item?.name}</td>
-                    <td>{item?.date}</td>
-                  </tr>;
-                })
-              ) : (
-                <></>
-              )}
-            </tbody>
-          </table>
+              <tbody>
+                {ship instanceof Array ? (
+                  ship?.map((item, index) => {
+                    <tr key={index}>
+                      <td>{item?.number}</td>
+                      <td>{item?.name}</td>
+                      <td>{item?.date}</td>
+                    </tr>;
+                  })
+                ) : (
+                  <></>
+                )}
+              </tbody>
+            </table>
+          </div>
 
           <button
             className={styles.blue_button}

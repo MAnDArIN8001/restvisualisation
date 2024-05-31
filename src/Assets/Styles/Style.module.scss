@@ -141,13 +141,17 @@ main:not(.partial_window) {
   }
 }
 
+.table_content {
+  max-height: 60vh;
+
+  overflow-y: scroll;
+}
+
 table {
   max-height: 80vh;
   width: 100%;
 
   border-collapse: collapse;
-
-  overflow-y: scroll;
 
   & td {
     border: 1px solid black;
