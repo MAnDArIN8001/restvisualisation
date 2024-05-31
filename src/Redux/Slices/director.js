@@ -7,7 +7,9 @@ export const createOrganization = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.post("accountant/organization", params, {
-        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
+        },
       });
 
       if (!response.status) {
@@ -30,7 +32,9 @@ export const createWarehouse = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.post("director/warehouse", params, {
-        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
+        },
       });
 
       if (!response.status) {
@@ -53,7 +57,9 @@ export const createRack = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.post("director/rack", params, {
-        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
+        },
       });
 
       if (!response.status) {
@@ -78,7 +84,9 @@ export const fetchDocs = createAsyncThunk(
       const { accepted, writeoff, nonverified, userId } = params;
 
       const response = await axios.get("director/docs", {
-        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
+        },
         params: { accepted, writeoff, nonverified, userId },
       });
 

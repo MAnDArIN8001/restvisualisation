@@ -7,7 +7,9 @@ export const fetchInventory = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.put("accountant/inventory", params.ships, {
-        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
+        },
         params: { userId: params.id },
       });
 
@@ -31,8 +33,10 @@ export const fetchRevaluation = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.get("accountant/revaluation", {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
+        },
         params: { userId: params.id },
-        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
       });
 
       if (!response.status) {
@@ -55,8 +59,10 @@ export const writeOff = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.put("accountant/writeoff", params.products, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
+        },
         params: { userId: params.userId },
-        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
       });
 
       if (!response.status) {
@@ -79,8 +85,10 @@ export const createRevaluation = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.put("accountant/revaluation", {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
+        },
         params: { userId: params?.id },
-        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
       });
 
       if (!response.status) {

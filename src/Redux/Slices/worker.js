@@ -8,7 +8,9 @@ export const createTable = createAsyncThunk(
     try {
       console.log(params, JSON.parse(localStorage?.user)?.token);
       const response = await axios.post("worker/create", params.products, {
-        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
+        },
         params: { userId: params.id },
       });
 
@@ -32,7 +34,9 @@ export const fetchTable = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.get("worker", {
-        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
+        },
         params: { userId: params.id },
       });
 
@@ -56,8 +60,10 @@ export const shipProduct = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     try {
       const response = await axios.delete("worker/ship", params.products, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
+        },
         params: { userId: params.userId },
-        headers: { Authorization: JSON.parse(localStorage?.user)?.token },
       });
 
       if (!response.status) {
