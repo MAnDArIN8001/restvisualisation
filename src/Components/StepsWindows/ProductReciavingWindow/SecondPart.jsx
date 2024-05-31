@@ -205,7 +205,7 @@ export default function SecondPart({
         onClick={() => {
           if (!isValidNext) return;
 
-          dispatch(createTable(resultArray));
+          dispatch(createTable({ products: resultArray, id: currentUser?.id }));
           setCountValue("");
           resultArrayState.set([]);
           setStep(0);

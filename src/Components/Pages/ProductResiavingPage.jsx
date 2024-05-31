@@ -30,7 +30,6 @@ export default function ProductResiavingPage() {
   }, []);
 
   useEffect(() => {
-    console.log(currentUser);
     dispatch(fetchTable({ id: currentUser?.id }));
   }, [currentUser]);
 
