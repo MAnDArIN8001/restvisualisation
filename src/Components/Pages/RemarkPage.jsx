@@ -26,9 +26,11 @@ export default function RemarkPage() {
     dispatch(tryGetUser());
 
     setCurrentUser(JSON.parse(localStorage?.user));
-
-    dispatch(fetchRevaluation({ id: currentUser?.id }));
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchRevaluation({ id: currentUser?.id }));
+  }, [currentUser]);
 
   const { reavaluation } = useSelector((state) => state.accountant);
 

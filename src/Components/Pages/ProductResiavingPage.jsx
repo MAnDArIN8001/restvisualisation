@@ -23,14 +23,16 @@ export default function ProductResiavingPage() {
 
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    await dispatch(tryGetUser());
+  useEffect(() => {
+    dispatch(tryGetUser());
 
-    setCurrentUser(localStorage?.user);
+    setCurrentUser(JSON.parse(localStorage?.user));
+  }, []);
 
+  useEffect(() => {
     console.log(currentUser);
     dispatch(fetchTable({ id: currentUser?.id }));
-  }, []);
+  }, [currentUser]);
 
   const { table } = useSelector((state) => state.worker);
 

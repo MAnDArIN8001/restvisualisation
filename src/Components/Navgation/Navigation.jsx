@@ -270,7 +270,6 @@ export default function Navigation() {
   ];
 
   const GetButtonsByCurrentRole = () => {
-    console.log(currentUser);
     if (!currentUser) {
       return (
         <>

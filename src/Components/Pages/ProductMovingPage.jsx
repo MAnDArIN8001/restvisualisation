@@ -25,10 +25,12 @@ export default function ProductMovingPage() {
   useEffect(() => {
     dispatch(tryGetUser());
 
-    setCurrentUser(localStorage?.user);
-
-    dispatch(fetchTable({ id: currentUser?.id }));
+    setCurrentUser(JSON.parse(localStorage?.user));
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchTable({ id: currentUser?.id }));
+  }, [currentUser]);
 
   const { table } = useSelector((state) => state.worker);
 

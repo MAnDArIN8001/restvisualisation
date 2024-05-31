@@ -26,7 +26,7 @@ export default function ReportsPage() {
   useEffect(() => {
     dispatch(tryGetUser());
 
-    setCurrentUser(localStorage?.user);
+    setCurrentUser(JSON.parse(localStorage?.user));
   }, []);
 
   const OpenMenu = () => {
