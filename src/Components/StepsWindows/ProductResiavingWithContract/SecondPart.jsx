@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { createRevaluation } from "../../../Redux/Slices/accountant";
 
@@ -14,6 +15,7 @@ export default function SecondPart({ setStep, firstParams, secondStepParam }) {
   const [paramsArray, setParamsArray] = useState([]);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     let isCorrect = id.trim().length !== 0 && price.trim().length !== 0;
@@ -104,7 +106,7 @@ export default function SecondPart({ setStep, firstParams, secondStepParam }) {
           );
           firstParams.set({ count: "", contractId: "" });
           secondStepParam.set([]);
-          setStep(0);
+          navigate("/remark");
         }}
       >
         Далее

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { tryGetUser } from "../../../Redux/Slices/auth";
 import { createTable } from "../../../Redux/Slices/worker";
@@ -28,6 +29,7 @@ export default function SecondPart({
   const [isValidNext, setIsValidNext] = useState(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(tryGetUser());
@@ -208,7 +210,7 @@ export default function SecondPart({
           dispatch(createTable({ products: resultArray, id: currentUser?.id }));
           setCountValue("");
           resultArrayState.set([]);
-          setStep(0);
+          navigate("/resiaving");
         }}
       >
         Далее
