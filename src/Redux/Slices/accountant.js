@@ -14,6 +14,7 @@ export const fetchInventory = createAsyncThunk(
       });
 
       if (!response.status) {
+        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -40,6 +41,7 @@ export const fetchRevaluation = createAsyncThunk(
       });
 
       if (!response.status) {
+        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -66,6 +68,7 @@ export const writeOff = createAsyncThunk(
       });
 
       if (!response.status) {
+        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -92,6 +95,7 @@ export const createRevaluation = createAsyncThunk(
       });
 
       if (!response.status) {
+        alert(response.message);
         throw new Error("ServerError: 500");
       }
 

@@ -13,6 +13,7 @@ export const createOrganization = createAsyncThunk(
       });
 
       if (!response.status) {
+        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -38,6 +39,7 @@ export const createWarehouse = createAsyncThunk(
       });
 
       if (!response.status) {
+        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -63,6 +65,7 @@ export const createRack = createAsyncThunk(
       });
 
       if (!response.status) {
+        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -91,6 +94,7 @@ export const fetchDocs = createAsyncThunk(
       });
 
       if (!response.status) {
+        alert(response.message);
         throw new Error("ServerError: 500");
       }
 

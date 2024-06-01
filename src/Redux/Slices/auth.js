@@ -11,6 +11,7 @@ export const fetchUserData = createAsyncThunk(
       console.log(response);
 
       if (!response.status) {
+        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -32,6 +33,7 @@ export const registerUserData = createAsyncThunk(
       const response = await axios.post("/register", params);
 
       if (!response.status) {
+        alert(response.message);
         throw new Error("ServerError: 500");
       }
 

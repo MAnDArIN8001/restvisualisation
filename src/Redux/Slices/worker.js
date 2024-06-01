@@ -14,6 +14,7 @@ export const createTable = createAsyncThunk(
       });
 
       if (!response.status) {
+        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -68,6 +69,7 @@ export const shipProduct = createAsyncThunk(
       });
 
       if (!response.status) {
+        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
