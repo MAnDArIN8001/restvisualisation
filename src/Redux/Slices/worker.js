@@ -145,7 +145,7 @@ const workerSlice = createSlice({
       .addCase(shipProduct.rejected, (state, action) => {
         state.ship = null;
         state.status = "error";
-        alert(action.payload);
+        alert("Ошибка");
       });
   },
 });
