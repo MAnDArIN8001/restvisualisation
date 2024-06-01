@@ -101,6 +101,8 @@ export default function InventarisationPage() {
               dispatch(
                 fetchInventory({ id: currentUser?.id, ships: products })
               );
+
+              setProducts([]);
             }}
           >
             Завершить
