@@ -59,11 +59,12 @@ export const shipProduct = createAsyncThunk(
   async (params, { rejectWithValue }) => {
     console.log(params);
     try {
-      const response = await axios.delete("worker/ship", params.products, {
+      const response = await axios.delete("worker/ship", {
         headers: {
           Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
         },
         params: { userId: Number(params.id) },
+        data: { products: params.products },
       });
 
       if (!response.status) {
