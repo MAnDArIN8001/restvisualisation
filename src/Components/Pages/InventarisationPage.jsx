@@ -85,7 +85,7 @@ export default function InventarisationPage() {
                   return;
                 }
 
-                setProducts([...products, currentId]);
+                setProducts([...products, { number: currentId }]);
                 setCurrentId("");
               }}
             >
