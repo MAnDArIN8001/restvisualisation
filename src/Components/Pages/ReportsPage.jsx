@@ -60,7 +60,7 @@ export default function ReportsPage() {
         <section className={styles.content}>
           <h1>Отчеты</h1>
 
-          <h3>Вуберите необходимые параметры</h3>
+          <h3>Выберите необходимые параметры</h3>
 
           <section className={styles.parametrs}>
             <div className={styles.parametr}>
@@ -68,7 +68,9 @@ export default function ReportsPage() {
                 type="checkbox"
                 id="droped_product"
                 value={writeoff}
-                onChange={(e) => setWriteOff(e.target.value)}
+                onChange={(e) => {
+                  setWriteOff(!writeoff);
+                }}
               />
               <label htmlFor="droped_product">Списанный товар</label>
             </div>
@@ -78,7 +80,7 @@ export default function ReportsPage() {
                 type="checkbox"
                 id="saving_product"
                 value={accepted}
-                onChange={(e) => setAccepted(e.target.value)}
+                onChange={(e) => setAccepted(!accepted)}
               />
               <label htmlFor="saving_product">Хранимый товар</label>
             </div>
@@ -88,7 +90,7 @@ export default function ReportsPage() {
                 type="checkbox"
                 id="unchecked_product"
                 value={nonverified}
-                onChange={(e) => setNonVerified(e.target.value)}
+                onChange={(e) => setNonVerified(!nonverified)}
               />
               <label htmlFor="unchecked_product">Неучтенный товар</label>
             </div>
