@@ -126,7 +126,7 @@ export default function RacksPart() {
 
           dispatch(
             createRack({
-              INN: inn,
+              organizationINN: inn,
               number,
               capacity,
               amount: celsCount,
