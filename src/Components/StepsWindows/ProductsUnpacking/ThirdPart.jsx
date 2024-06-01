@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { shipProduct } from "../../../Redux/Slices/worker";
 
@@ -32,6 +33,7 @@ export default function ThirdPart({
   );
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (
@@ -159,6 +161,8 @@ export default function ThirdPart({
               products: dataToSend.secondPart,
             })
           );
+
+          navigate("/redirecting");
         }}
       >
         Далее

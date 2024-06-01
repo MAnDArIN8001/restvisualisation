@@ -80,7 +80,7 @@ export default function ProductUnpackingWindow() {
               src={closeButtonSvg}
               alt="close:img"
               style={{ cursor: "pointer" }}
-              onClick={() => navigate("/remark")}
+              onClick={() => navigate("/redirecting")}
             />
             <h1>Отгрузка товара</h1>
           </div>
