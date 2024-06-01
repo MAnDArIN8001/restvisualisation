@@ -28,32 +28,6 @@ export const fetchInventory = createAsyncThunk(
   }
 );
 
-export const fetchRevaluation = createAsyncThunk(
-  "accountant/revaluation",
-  async (params, { rejectWithValue }) => {
-    try {
-      const response = await axios.get("accountant/revaluation", {
-        headers: {
-          Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
-        },
-        params: { userId: Number(params.id) },
-      });
-
-      if (!response.status) {
-        throw new Error("ServerError: 500");
-      }
-
-      const data = response.data.data;
-
-      localStorage.revaluation = JSON.stringify(data);
-
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
 export const writeOff = createAsyncThunk(
   "accountant/writeoff",
   async (params, { rejectWithValue }) => {
@@ -146,15 +120,6 @@ const accountantSlice = createSlice({
       })
       .addCase(fetchInventory.rejected, (state, action) => {
         state.inventory = null;
-        state.status = "error";
-        alert("Ошибка");
-      })
-      .addCase(fetchRevaluation.fulfilled, (state, action) => {
-        state.revaluation = action.payload;
-        state.status = "done";
-      })
-      .addCase(fetchRevaluation.rejected, (state, action) => {
-        state.revaluation = null;
         state.status = "error";
         alert("Ошибка");
       })
