@@ -42,7 +42,7 @@ export default function SecondPart({ setStep, firstParams, secondStepParam }) {
           <p>Уникальный номер</p>
           <input
             type="text"
-            placeholder="введите уникальный номер"
+            placeholder="Введите уникальный номер"
             value={id}
             onChange={(e) => {
               setId(e.target.value);
@@ -54,7 +54,7 @@ export default function SecondPart({ setStep, firstParams, secondStepParam }) {
           <p>Стоимость</p>
           <input
             type="text"
-            placeholder="Единица измерения"
+            placeholder="Стоимость"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
