@@ -8,7 +8,7 @@ import styles from "../../Assets/Styles/Style.module.scss";
 export default function OrganizationsPart() {
   const [inn, setInn] = useState("");
   const [name, setName] = useState("");
-  const [adress, setAdress] = useState("");
+  const [address, setAdress] = useState("");
 
   const dispatch = useDispatch();
 
@@ -41,7 +41,7 @@ export default function OrganizationsPart() {
         <input
           type="text"
           placeholder="Введите юредический адрес"
-          value={adress}
+          value={address}
           onChange={(e) => setAdress(e.target.value)}
         />
       </div>
@@ -62,12 +62,12 @@ export default function OrganizationsPart() {
           if (
             inn.trim().length === 0 ||
             name.trim().length === 0 ||
-            adress.trim().length === 0
+            address.trim().length === 0
           ) {
             return;
           }
 
-          dispatch(createOrganization({ inn: inn, name, adress }));
+          dispatch(createOrganization({ inn: inn, name, adress: address }));
         }}
       >
         Добавить
