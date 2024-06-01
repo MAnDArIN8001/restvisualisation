@@ -67,7 +67,7 @@ export default function OrganizationsPart() {
             return;
           }
 
-          dispatch(createOrganization({ INN: inn, name, adress }));
+          dispatch(createOrganization({ inn: inn, name, adress }));
         }}
       >
         Добавить
