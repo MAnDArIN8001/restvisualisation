@@ -14,7 +14,6 @@ export const createTable = createAsyncThunk(
       });
 
       if (!response.status) {
-        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -69,7 +68,6 @@ export const shipProduct = createAsyncThunk(
       });
 
       if (!response.status) {
-        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -122,6 +120,7 @@ const workerSlice = createSlice({
       .addCase(createTable.rejected, (state, action) => {
         state.ship = null;
         state.status = "error";
+        alert(action.payload);
       })
       .addCase(fetchTable.pending, (state) => {
         state.ship = null;
@@ -146,6 +145,7 @@ const workerSlice = createSlice({
       .addCase(shipProduct.rejected, (state, action) => {
         state.ship = null;
         state.status = "error";
+        alert(action.payload);
       });
   },
 });

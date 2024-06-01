@@ -8,10 +8,7 @@ export const fetchUserData = createAsyncThunk(
     try {
       const response = await axios.post("/login", params);
 
-      console.log(response);
-
       if (!response.status) {
-        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -33,7 +30,6 @@ export const registerUserData = createAsyncThunk(
       const response = await axios.post("/register", params);
 
       if (!response.status) {
-        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -95,6 +91,7 @@ const authSlice = createSlice({
       .addCase(fetchUserData.rejected, (state, action) => {
         state.status = "error";
         state.data = null;
+        alert(action.payload);
       })
       .addCase(registerUserData.pending, (state) => {
         state.user = null;
@@ -107,6 +104,7 @@ const authSlice = createSlice({
       .addCase(registerUserData.rejected, (state, action) => {
         state.status = "error";
         state.user = null;
+        alert(action.payload);
       });
   },
 });

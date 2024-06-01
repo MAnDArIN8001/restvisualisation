@@ -14,7 +14,6 @@ export const fetchInventory = createAsyncThunk(
       });
 
       if (!response.status) {
-        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -41,7 +40,6 @@ export const fetchRevaluation = createAsyncThunk(
       });
 
       if (!response.status) {
-        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -68,7 +66,6 @@ export const writeOff = createAsyncThunk(
       });
 
       if (!response.status) {
-        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -95,7 +92,6 @@ export const createRevaluation = createAsyncThunk(
       });
 
       if (!response.status) {
-        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -151,6 +147,7 @@ const accountantSlice = createSlice({
       .addCase(fetchInventory.rejected, (state, action) => {
         state.inventory = null;
         state.status = "error";
+        alert(action.payload);
       })
       .addCase(fetchRevaluation.fulfilled, (state, action) => {
         state.revaluation = action.payload;
@@ -159,6 +156,7 @@ const accountantSlice = createSlice({
       .addCase(fetchRevaluation.rejected, (state, action) => {
         state.revaluation = null;
         state.status = "error";
+        alert(action.payload);
       })
       .addCase(writeOff.pending, (state) => {
         state.writeoff = null;
@@ -171,6 +169,7 @@ const accountantSlice = createSlice({
       .addCase(writeOff.rejected, (state, action) => {
         state.writeoff = null;
         state.status = "error";
+        alert(action.payload);
       })
       .addCase(createRevaluation.pending, (state) => {
         state.revalTable = null;
@@ -183,6 +182,7 @@ const accountantSlice = createSlice({
       .addCase(createRevaluation.rejected, (state, action) => {
         state.revalTable = null;
         state.status = "error";
+        alert(action.payload);
       });
   },
 });

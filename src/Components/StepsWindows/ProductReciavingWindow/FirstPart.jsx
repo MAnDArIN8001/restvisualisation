@@ -25,7 +25,7 @@ export default function FirstPart({
           <p>Введите число позиций</p>
           <input
             type="number"
-            min={0}
+            min={1}
             placeholder="Количество"
             value={countValue}
             onChange={(e) => {

@@ -13,7 +13,6 @@ export const createOrganization = createAsyncThunk(
       });
 
       if (!response.status) {
-        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -39,7 +38,6 @@ export const createWarehouse = createAsyncThunk(
       });
 
       if (!response.status) {
-        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -65,7 +63,6 @@ export const createRack = createAsyncThunk(
       });
 
       if (!response.status) {
-        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -94,7 +91,6 @@ export const fetchDocs = createAsyncThunk(
       });
 
       if (!response.status) {
-        alert(response.message);
         throw new Error("ServerError: 500");
       }
 
@@ -154,6 +150,7 @@ const directorSlice = createSlice({
       .addCase(createOrganization.rejected, (state, action) => {
         state.organization = null;
         state.status = "error";
+        alert(action.payload);
       })
       .addCase(createWarehouse.pending, (state) => {
         state.wearhouse = null;
@@ -166,6 +163,7 @@ const directorSlice = createSlice({
       .addCase(createWarehouse.rejected, (state, action) => {
         state.wearhouse = null;
         state.status = "error";
+        alert(action.payload);
       })
       .addCase(createRack.pending, (state) => {
         state.rack = null;
@@ -178,6 +176,7 @@ const directorSlice = createSlice({
       .addCase(createRack.rejected, (state, action) => {
         state.rack = null;
         state.status = "error";
+        alert(action.payload);
       })
       .addCase(fetchDocs.pending, (state) => {
         state.docs = null;
@@ -190,6 +189,7 @@ const directorSlice = createSlice({
       .addCase(fetchDocs.rejected, (state, action) => {
         state.docs = null;
         state.status = "error";
+        alert(action.payload);
       });
   },
 });
