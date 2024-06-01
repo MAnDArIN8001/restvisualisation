@@ -8,7 +8,7 @@ import styles from "../../Assets/Styles/Style.module.scss";
 export default function StocksPart() {
   const [inn, setInn] = useState("");
   const [name, setName] = useState("");
-  const [adress, setAdress] = useState("");
+  const [address, setAdress] = useState("");
 
   const dispatch = useDispatch();
 
@@ -41,7 +41,7 @@ export default function StocksPart() {
         <input
           type="text"
           placeholder="Введите адрес"
-          value={adress}
+          value={address}
           onChange={(e) => setAdress(e.target.value)}
         />
       </div>
@@ -62,12 +62,12 @@ export default function StocksPart() {
           if (
             inn.trim().length === 0 ||
             name.trim().length === 0 ||
-            adress.trim().length === 0
+            address.trim().length === 0
           ) {
             return;
           }
 
-          dispatch(createWarehouse({ organizationINN: inn, name, adress }));
+          dispatch(createWarehouse({ organizationINN: inn, name, address }));
         }}
       >
         Добавить
