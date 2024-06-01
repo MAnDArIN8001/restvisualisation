@@ -147,7 +147,7 @@ const accountantSlice = createSlice({
       .addCase(fetchInventory.rejected, (state, action) => {
         state.inventory = null;
         state.status = "error";
-        alert(action.payload);
+        alert("Ошибка");
       })
       .addCase(fetchRevaluation.fulfilled, (state, action) => {
         state.revaluation = action.payload;
@@ -156,7 +156,7 @@ const accountantSlice = createSlice({
       .addCase(fetchRevaluation.rejected, (state, action) => {
         state.revaluation = null;
         state.status = "error";
-        alert(action.payload);
+        alert("Ошибка");
       })
       .addCase(writeOff.pending, (state) => {
         state.writeoff = null;
@@ -169,7 +169,7 @@ const accountantSlice = createSlice({
       .addCase(writeOff.rejected, (state, action) => {
         state.writeoff = null;
         state.status = "error";
-        alert(action.payload);
+        alert("Ошибка");
       })
       .addCase(createRevaluation.pending, (state) => {
         state.revalTable = null;
@@ -182,7 +182,7 @@ const accountantSlice = createSlice({
       .addCase(createRevaluation.rejected, (state, action) => {
         state.revalTable = null;
         state.status = "error";
-        alert(action.payload);
+        alert("Ошибка");
       });
   },
 });

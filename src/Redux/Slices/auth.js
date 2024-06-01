@@ -91,7 +91,7 @@ const authSlice = createSlice({
       .addCase(fetchUserData.rejected, (state, action) => {
         state.status = "error";
         state.data = null;
-        alert(action.payload);
+        alert("Ошибка");
       })
       .addCase(registerUserData.pending, (state) => {
         state.user = null;
@@ -104,7 +104,7 @@ const authSlice = createSlice({
       .addCase(registerUserData.rejected, (state, action) => {
         state.status = "error";
         state.user = null;
-        alert(action.payload);
+        alert("Ошибка");
       });
   },
 });

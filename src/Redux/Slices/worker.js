@@ -64,7 +64,7 @@ export const shipProduct = createAsyncThunk(
           Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
         },
         params: { userId: Number(params.id) },
-        data: { products: params.products },
+        data: params.products,
       });
 
       if (!response.status) {
@@ -120,7 +120,7 @@ const workerSlice = createSlice({
       .addCase(createTable.rejected, (state, action) => {
         state.ship = null;
         state.status = "error";
-        alert(action.payload);
+        alert("Ошибка");
       })
       .addCase(fetchTable.pending, (state) => {
         state.ship = null;
