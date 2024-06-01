@@ -57,6 +57,7 @@ export const fetchTable = createAsyncThunk(
 export const shipProduct = createAsyncThunk(
   "worker/shipProduct",
   async (params, { rejectWithValue }) => {
+    console.log(params);
     try {
       const response = await axios.delete("worker/ship", params.products, {
         headers: {

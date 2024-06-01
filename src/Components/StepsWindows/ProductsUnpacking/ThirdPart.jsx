@@ -155,6 +155,8 @@ export default function ThirdPart({
         onClick={() => {
           if (!isValid) return;
 
+          console.log(JSON.parse(localStorage.user));
+
           dispatch(
             shipProduct({
               id: JSON.parse(localStorage?.user)?.id,
