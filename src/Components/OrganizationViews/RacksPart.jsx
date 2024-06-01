@@ -18,15 +18,17 @@ export default function RacksPart() {
 
   const validateFields = () => {
     if (
-      !/^\d+(\.\d+)?$/.test(number) ||
-      !/^\d+(\.\d+)?$/.test(capacity) ||
-      !/^\d+(\.\d+)?$/.test(celsCount) ||
-      !/^\d+(\.\d+)?$/.test(length) ||
-      !/^\d+(\.\d+)?$/.test(width) ||
-      !/^\d+(\.\d+)?$/.test(height)
+      number.length === 0 ||
+      capacity.length === 0 ||
+      celsCount.length === 0 ||
+      length.length === 0 ||
+      width.length === 0 ||
+      height.length === 0
     ) {
       return false;
     }
+
+    return true;
   };
 
   return (
