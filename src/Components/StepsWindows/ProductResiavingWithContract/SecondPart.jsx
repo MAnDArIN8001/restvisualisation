@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 
-import { createTable } from "../../../Redux/Slices/worker";
+import { createRevaluation } from "../../../Redux/Slices/accountant";
 
 import styles from "../../../Assets/Styles/Style.module.scss";
 
@@ -97,7 +97,7 @@ export default function SecondPart({ setStep, firstParams, secondStepParam }) {
           if (paramsArray.length < firstParams.value.count) return;
 
           dispatch(
-            createTable({
+            createRevaluation({
               id: JSON.parse(localStorage?.user)?.id,
               products: paramsArray,
             })

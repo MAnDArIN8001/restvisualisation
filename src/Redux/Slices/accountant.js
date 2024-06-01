@@ -58,12 +58,16 @@ export const createRevaluation = createAsyncThunk(
   "accountant/createRevaluation",
   async (params, { rejectWithValue }) => {
     try {
-      const response = await axios.put("accountant/revaluation", {
-        headers: {
-          Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
-        },
-        params: { userId: Number(params.id) },
-      });
+      const response = await axios.put(
+        "accountant/revaluation",
+        params.products,
+        {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(localStorage?.user)?.token}`,
+          },
+          params: { userId: Number(params.id) },
+        }
+      );
 
       if (!response.status) {
         throw new Error("ServerError: 500");
