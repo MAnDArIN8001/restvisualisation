@@ -1,4 +1,7 @@
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+
+import { shipProduct } from "../../../Redux/Slices/worker";
 
 import styles from "../../../Assets/Styles/Style.module.scss";
 
@@ -6,27 +9,110 @@ import TTHField from "./TTHField";
 import THField from "./THField";
 
 export default function ThirdPart({
-  navigate,
   setThirdStepParams,
+  thirdStepParams,
   setCurrentStep,
-  isValid,
+  dataToSend,
 }) {
   const [currentType, setCurrentType] = useState("");
+  const [isValid, setIsValid] = useState(false);
+  const [vechicle, setVechicle] = useState(thirdStepParams.vechicle);
+  const [reciaverName, setReciaverName] = useState(
+    thirdStepParams.reciaverName
+  );
+  const [adress, setAdress] = useState(thirdStepParams.adress);
+  const [vocationReasone, setVocationReasone] = useState(
+    thirdStepParams.vocationReasone
+  );
+  const [vocationAproover, setVocationAproover] = useState(
+    thirdStepParams.vocationAproover
+  );
+  const [contractNumber, setContractNumber] = useState(
+    thirdStepParams.contractNumber
+  );
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    if (
+      currentType === "tth" &&
+      (vechicle.trim().length === 0 ||
+        reciaverName.trim().length === 0 ||
+        adress.trim().length === 0 ||
+        vocationReasone.trim().length === 0 ||
+        vocationAproover.trim().length === 0 ||
+        contractNumber.trim().length === 0)
+    ) {
+      setIsValid(false);
+    } else if (currentType === "tth") {
+      setIsValid(true);
+    }
+
+    if (
+      currentType === "th" &&
+      (reciaverName.trim().length === 0 ||
+        adress.trim().length === 0 ||
+        vocationReasone.trim().length === 0 ||
+        vocationAproover.trim().length === 0 ||
+        contractNumber.trim().length === 0)
+    ) {
+      setIsValid(false);
+    } else if (currentType === "th") {
+      setIsValid(true);
+    }
+  }, [
+    vechicle,
+    reciaverName,
+    adress,
+    vocationReasone,
+    vocationAproover,
+    contractNumber,
+    currentType,
+  ]);
+
+  const updateParams = () => {
     let newParams = {
-      type: "",
-      data: {},
+      vechicle,
+      reciaverName,
+      adress,
+      vocationReasone,
+      vocationAproover,
+      contractNumber,
     };
 
     setThirdStepParams(newParams);
-  }, []);
+  };
 
   const getCurrentTypeForm = () => {
     if (currentType === "tth") {
-      return <TTHField />;
+      return (
+        <TTHField
+          setParams={updateParams}
+          vechicle={{ value: vechicle, set: setVechicle }}
+          reciaverName={{ value: reciaverName, set: setReciaverName }}
+          adress={{ value: adress, set: setAdress }}
+          vocationReasone={{ value: vocationReasone, set: setVocationReasone }}
+          vocationAproover={{
+            value: vocationAproover,
+            set: setVocationAproover,
+          }}
+          contractNumber={{ value: contractNumber, set: setContractNumber }}
+        />
+      );
     } else if (currentType === "th") {
-      return <THField />;
+      return (
+        <THField
+          setParams={updateParams}
+          reciaverName={{ value: reciaverName, set: setReciaverName }}
+          adress={{ value: adress, set: setAdress }}
+          vocationReasone={{ value: vocationReasone, set: setVocationReasone }}
+          vocationAproover={{
+            value: vocationAproover,
+            set: setVocationAproover,
+          }}
+          contractNumber={{ value: contractNumber, set: setContractNumber }}
+        />
+      );
     } else {
       return <></>;
     }
@@ -62,7 +148,21 @@ export default function ThirdPart({
 
       {getCurrentTypeForm()}
 
-      <button>Далее</button>
+      <button
+        className={`${isValid ? styles.active : ""}`}
+        onClick={() => {
+          if (!isValid) return;
+
+          dispatch(
+            shipProduct({
+              id: JSON.parse(localStorage?.user)?.id,
+              products: dataToSend.secondPart,
+            })
+          );
+        }}
+      >
+        Далее
+      </button>
     </main>
   );
 }

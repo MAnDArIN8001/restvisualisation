@@ -15,8 +15,15 @@ export default function ProductUnpackingWindow() {
   const [countValue, setCountValue] = useState("");
   const [secondStepParams, setSecondStepParams] = useState([]);
   const [thirdStepParams, setThirdStepParams] = useState({
-    type: "",
-    data: {},
+    vechicle: "",
+    trailer: "",
+    routeList: "",
+    vechicleCustomer: "",
+    reciaverName: "",
+    adress: "",
+    vocationReasone: "",
+    vocationAproover: "",
+    contractNumber: "",
   });
 
   const [isValid, setIsValid] = useState(false);
@@ -45,10 +52,10 @@ export default function ProductUnpackingWindow() {
       key={1}
     />,
     <ThirdPart
-      navigate={navigate}
       setCurrentStep={setCurrentStep}
+      dataToSend={{ firstPart: countValue, secondPart: secondStepParams }}
+      thirdStepParams={thirdStepParams}
       setThirdStepParams={setThirdStepParams}
-      isValid={isValid}
     />,
   ];
 

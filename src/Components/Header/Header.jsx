@@ -51,7 +51,7 @@ export default function Header({ currentUser, openMenu, changeSignin }) {
             viewBox="0 0 480 480"
             onClick={() => {
               dispatch(logOut());
-              navigate("");
+              navigate("/");
               window.location.reload();
             }}
             xmlns="http://www.w3.org/2000/svg"

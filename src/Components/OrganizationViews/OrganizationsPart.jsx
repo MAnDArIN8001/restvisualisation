@@ -14,7 +14,7 @@ export default function OrganizationsPart() {
 
   return (
     <section className={styles.input_field}>
-      <h1>организации</h1>
+      <h1>Организации</h1>
 
       <div className={styles.base_field}>
         <p>УНП организации</p>

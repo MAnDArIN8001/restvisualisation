@@ -77,7 +77,7 @@ export default function SecondPart({
 
             let newValue = {
               number: id,
-              nds,
+              tax: nds,
             };
 
             setPropsArray([...propsArray, newValue]);

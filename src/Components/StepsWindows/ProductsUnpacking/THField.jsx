@@ -2,13 +2,14 @@ import { useState } from "react";
 
 import styles from "../../../Assets/Styles/Style.module.scss";
 
-export default function THField() {
-  const [resiaver, setResiaver] = useState("");
-  const [adress, setAdress] = useState("");
-  const [reazone, setReazone] = useState("");
-  const [aproovedBy, setAproovedBy] = useState("");
-  const [id, setId] = useState("");
-
+export default function THField({
+  setParams,
+  reciaverName,
+  adress,
+  vocationReasone,
+  vocationAproover,
+  contractNumber,
+}) {
   return (
     <section className={`${styles.input_field} ${styles.large_field}`}>
       <div className={styles.base_field}>
@@ -16,9 +17,9 @@ export default function THField() {
         <input
           type="text"
           placeholder="Наименование"
-          value={resiaver}
+          value={reciaverName.value}
           onChange={(e) => {
-            setResiaver(e.target.value);
+            reciaverName.set(e.target.value);
           }}
         />
       </div>
@@ -28,9 +29,9 @@ export default function THField() {
         <input
           type="text"
           placeholder="Адрес"
-          value={adress}
+          value={adress.value}
           onChange={(e) => {
-            setAdress(e.target.value);
+            adress.set(e.target.value);
           }}
         />
       </div>
@@ -40,9 +41,9 @@ export default function THField() {
         <input
           type="text"
           placeholder="Основание"
-          value={reazone}
+          value={vocationReasone.value}
           onChange={(e) => {
-            setReazone(e.target.value);
+            vocationReasone.set(e.target.value);
           }}
         />
       </div>
@@ -52,9 +53,9 @@ export default function THField() {
         <input
           type="text"
           placeholder="Должность и имя"
-          value={aproovedBy}
+          value={vocationAproover.value}
           onChange={(e) => {
-            setAproovedBy(e.target.value);
+            vocationAproover.set(e.target.value);
           }}
         />
       </div>
@@ -64,9 +65,9 @@ export default function THField() {
         <input
           type="number"
           placeholder="Номер"
-          value={id}
+          value={contractNumber.value}
           onChange={(e) => {
-            setId(e.target.value);
+            contractNumber.set(e.target.value);
           }}
         />
       </div>
@@ -74,15 +75,23 @@ export default function THField() {
       <button
         className={`${styles.blue_button}`}
         onClick={() => {
+          let isValid = true;
           let inputs = document.querySelectorAll("input");
 
           for (let input of inputs) {
             if (input.value.trim().length === 0) {
               input.classList.add(styles.wrong);
+              isValid = false;
             } else {
               input.classList.remove(styles.wrong);
             }
           }
+
+          if (!isValid) {
+            return;
+          }
+
+          setParams();
         }}
       >
         Подтвердить

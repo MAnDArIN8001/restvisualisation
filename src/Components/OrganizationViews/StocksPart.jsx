@@ -18,18 +18,34 @@ export default function StocksPart() {
 
       <div className={styles.base_field}>
         <p>УНП организации</p>
-        <input type="text" placeholder="Введите унп организации" />
+        <input
+          type="text"
+          placeholder="Введите унп организации"
+          value={inn}
+          onChange={(e) => setInn(e.target.value)}
+        />
       </div>
 
       <div className={styles.base_field}>
         <p>Наименование</p>
-        <input type="text" placeholder="Введите наименование" />
+        <input
+          type="text"
+          placeholder="Введите наименование"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </div>
 
       <div className={styles.base_field}>
         <p>Адрес</p>
-        <input type="text" placeholder="Введите адрес" />
+        <input
+          type="text"
+          placeholder="Введите адрес"
+          value={adress}
+          onChange={(e) => setAdress(e.target.value)}
+        />
       </div>
+
       <button
         className={`${styles.blue_button} ${styles.full_size} ${styles.left_side}`}
         onClick={() => {
