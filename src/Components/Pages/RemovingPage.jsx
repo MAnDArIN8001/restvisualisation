@@ -120,9 +120,7 @@ export default function RemovingPage() {
             onClick={() => {
               if (products.length === 0) return;
 
-              dispatch(
-                writeOff({ userId: currentUser.id, products: products })
-              );
+              dispatch(writeOff({ id: currentUser.id, products: products }));
 
               setProducts([]);
             }}
