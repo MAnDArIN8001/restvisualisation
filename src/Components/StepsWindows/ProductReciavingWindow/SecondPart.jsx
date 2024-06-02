@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { pdf } from "@react-pdf/renderer";
 import { useNavigate } from "react-router-dom";
+
+import MyDocument from "../../../PdfTablesTemplates/TestTemplate";
 
 import { tryGetUser } from "../../../Redux/Slices/auth";
 import { createTable } from "../../../Redux/Slices/worker";
@@ -65,6 +68,15 @@ export default function SecondPart({
     setWeight("");
     setWidth("");
     setHeight("");
+  };
+
+  const downloadPdf = async (data) => {
+    const blob = await pdf(<MyDocument data={data} />).toBlob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "myfile.pdf";
+    link.click();
   };
 
   return (
@@ -290,6 +302,7 @@ export default function SecondPart({
           if (!isValidNext) return;
 
           dispatch(createTable({ products: resultArray, id: currentUser?.id }));
+          downloadPdf(resultArray);
           setCountValue("");
           resultArrayState.set([]);
           navigate("/resiaving");

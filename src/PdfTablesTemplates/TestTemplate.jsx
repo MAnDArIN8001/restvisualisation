@@ -1,20 +1,37 @@
 import React from "react";
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Font,
+} from "@react-pdf/renderer";
+
+import font from "../Assets/Roboto/Roboto/Roboto-Regular.ttf";
+
+Font.register({
+  family: "Roboto",
+  src: font,
+});
 
 // Create styles
 const styles = StyleSheet.create({
+  page: { padding: "10px" },
   header: {
     display: "flex",
     flexDirection: "column",
   },
   title: {
     textAlign: "center",
+    fontFamily: "Roboto",
     fontSize: "20px",
     fontWeight: "bold",
   },
   table: {
     display: "table",
     width: "auto",
+    marginTop: "20px",
     borderStyle: "solid",
     borderWidth: 1,
     borderRightWidth: 0,
@@ -27,12 +44,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderLeftWidth: 0,
     borderTopWidth: 0,
-    fontSize: 10,
   },
-  tableCell: { fontSize: "10px" },
+  tableTitle: { fontFamily: "Roboto", fontSize: "10px" },
 });
 
-const MyDocument = () => (
+const MyDocument = ({ data }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.header}>
@@ -41,21 +57,43 @@ const MyDocument = () => (
       <View style={styles.table}>
         <View style={styles.tableRow}>
           <View style={styles.tableCol}>
-            <Text style={styles.tableCell}>Наименование</Text>
+            <Text style={styles.tableTitle}>Наименование</Text>
           </View>
           <View style={styles.tableCol}>
-            <Text>Количество</Text>
+            <Text style={styles.tableTitle}>Количество</Text>
           </View>
           <View style={styles.tableCol}>
-            <Text>единица измерения</Text>
+            <Text style={styles.tableTitle}>Единица измерения</Text>
           </View>
           <View style={styles.tableCol}>
-            <Text>Стоимость</Text>
+            <Text style={styles.tableTitle}>Стоимость</Text>
           </View>
           <View style={styles.tableCol}>
-            <Text>габариты</Text>
+            <Text style={styles.tableTitle}>Габариты</Text>
           </View>
         </View>
+
+        {data.map((item, index) => (
+          <View style={styles.tableRow} key={index}>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableTitle}>{item.name}</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableTitle}>{item.amount}</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableTitle}>{item.unit}</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableTitle}>{item.price}</Text>
+            </View>
+            <View style={styles.tableCol}>
+              <Text style={styles.tableTitle}>
+                {item.length}*{item.width}*{item.height}
+              </Text>
+            </View>
+          </View>
+        ))}
       </View>
     </Page>
   </Document>

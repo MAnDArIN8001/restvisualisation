@@ -42,15 +42,6 @@ export default function RemovingPage() {
     setBurgerState(false);
   };
 
-  const downloadPdf = async () => {
-    const blob = await pdf(<MyDocument />).toBlob();
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "myfile.pdf";
-    link.click();
-  };
-
   return (
     <>
       {currentUser && (
@@ -127,7 +118,7 @@ export default function RemovingPage() {
                 }
 
                 setProducts([...products, { number: currentId, reasone }]);
-                downloadPdf();
+
                 setCurrentId("");
               }}
             >
