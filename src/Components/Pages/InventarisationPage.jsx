@@ -40,7 +40,7 @@ export default function InventarisationPage() {
   };
 
   const downloadPdf = async (data) => {
-    const blob = await pdf(<InventarisationPage data={data} />).toBlob();
+    const blob = await pdf(<InventarisationPrototype data={data} />).toBlob();
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
