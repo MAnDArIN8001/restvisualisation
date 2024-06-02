@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     fontSize: "20px",
     fontWeight: "bold",
   },
+  textHeader: { fontFamily: "Roboto", fontSize: "14px" },
   table: {
     display: "table",
     width: "auto",
