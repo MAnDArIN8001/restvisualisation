@@ -1,7 +1,10 @@
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
+import { pdf } from "@react-pdf/renderer";
 
 import { writeOff } from "../../Redux/Slices/accountant";
+
+import MyDocument from "../../PdfTablesTemplates/TestTemplate";
 
 import Header from "../Header/Header";
 import Navigation from "../Navgation/Navigation";
@@ -37,6 +40,15 @@ export default function RemovingPage() {
     document.querySelector("body").classList.remove(styles.burger_opened);
 
     setBurgerState(false);
+  };
+
+  const downloadPdf = async () => {
+    const blob = await pdf(<MyDocument />).toBlob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "myfile.pdf";
+    link.click();
   };
 
   return (
@@ -115,7 +127,7 @@ export default function RemovingPage() {
                 }
 
                 setProducts([...products, { number: currentId, reasone }]);
-
+                downloadPdf();
                 setCurrentId("");
               }}
             >
