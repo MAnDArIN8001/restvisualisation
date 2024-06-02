@@ -1,6 +1,9 @@
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { pdf } from "@react-pdf/renderer";
+
+import RemarkTemplate from "../../../PdfTablesTemplates/RemarkPrototype";
 
 import { createRevaluation } from "../../../Redux/Slices/accountant";
 
@@ -31,6 +34,17 @@ export default function SecondPart({ setStep, firstParams, secondStepParam }) {
   const clearFields = () => {
     setPrice("");
     setId("");
+  };
+
+  const downloadPdf = async (data) => {
+    const blob = await pdf(
+      <RemarkTemplate data={data} contractId={firstParams.value.contractId} />
+    ).toBlob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "myfile.pdf";
+    link.click();
   };
 
   return (
@@ -107,15 +121,17 @@ export default function SecondPart({ setStep, firstParams, secondStepParam }) {
 
       <button
         className={`${isValidNext ? styles.active : ""}`}
-        onClick={() => {
+        onClick={async () => {
           if (paramsArray.length < firstParams.value.count) return;
 
-          dispatch(
+          const test = await dispatch(
             createRevaluation({
               id: JSON.parse(localStorage?.user)?.id,
               products: paramsArray,
             })
           );
+
+          downloadPdf(test.payload);
           firstParams.set({ count: "", contractId: "" });
           secondStepParam.set([]);
           navigate("/remark");
