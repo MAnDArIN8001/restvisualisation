@@ -104,6 +104,11 @@ export default function ThirdPart({
           car={vechicle}
           sumPrice={sumPrice}
           sumWeight={sumWeight}
+          address={adress}
+          nameReciaver={reciaverName}
+          reasone={vocationReasone}
+          required={vocationAproover}
+          number={contractNumber}
         />
       ) : (
         <THTemplate
@@ -111,6 +116,11 @@ export default function ThirdPart({
           car={vechicle}
           sumPrice={sumPrice}
           sumWeight={sumWeight}
+          address={adress}
+          nameReciaver={reciaverName}
+          reasone={vocationReasone}
+          required={vocationAproover}
+          number={contractNumber}
         />
       )
     ).toBlob();

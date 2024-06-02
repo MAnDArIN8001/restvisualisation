@@ -47,19 +47,30 @@ const styles = StyleSheet.create({
   tableTitle: { fontFamily: "Roboto", fontSize: "10px" },
   footerValues: {
     display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: "column",
   },
   footerText: { fontFamily: "Roboto", fontSize: "14px" },
 });
 
-const THTemplate = ({ data, car, sumPrice, sumWeight }) => (
+const THTemplate = ({
+  data,
+  car,
+  sumPrice,
+  sumWeight,
+  address,
+  nameReciaver,
+  reasone,
+  required,
+  number,
+}) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.header}>
         <Text style={styles.title}>ТОВАРНАЯ НАКЛАДНАЯ</Text>
 
         <Text>Автомобиль: {car}</Text>
+        <Text>Наименование грузополучателя: {nameReciaver}</Text>
+        <Text>Наименование грузополучателя: {nameReciaver}</Text>
       </View>
       <View style={styles.table}>
         <View style={styles.tableRow}>
@@ -104,6 +115,9 @@ const THTemplate = ({ data, car, sumPrice, sumWeight }) => (
       <View style={styles.footerValues}>
         <Text style={styles.footerText}>Итоговая цена: {sumPrice}</Text>
         <Text style={styles.footerText}>Итоговая масса: {sumWeight}</Text>
+        <Text style={styles.footerText}>Основание отпуска: {reasone}</Text>
+        <Text style={styles.footerText}>Отпуск разрешил: {required}</Text>
+        <Text style={styles.footerText}>Номер накладной: {number}</Text>
       </View>
     </Page>
   </Document>
