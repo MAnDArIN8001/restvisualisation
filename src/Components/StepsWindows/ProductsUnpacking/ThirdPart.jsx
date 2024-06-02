@@ -1,8 +1,11 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { pdf } from "@react-pdf/renderer";
 
 import { shipProduct } from "../../../Redux/Slices/worker";
+import TTHTemplate from "../../../PdfTablesTemplates/TTHTemplate";
+import THTemplate from "../../../PdfTablesTemplates/THTemplate";
 
 import styles from "../../../Assets/Styles/Style.module.scss";
 
@@ -85,6 +88,39 @@ export default function ThirdPart({
     setThirdStepParams(newParams);
   };
 
+  const downloadPdf = async (data) => {
+    let sumPrice = 0;
+    let sumWeight = 0;
+
+    for (let item of data) {
+      sumPrice += item.price;
+      sumWeight += item.weight;
+    }
+
+    const blob = await pdf(
+      currentType === "tth" ? (
+        <TTHTemplate
+          data={data}
+          car={vechicle}
+          sumPrice={sumPrice}
+          sumWeight={sumWeight}
+        />
+      ) : (
+        <THTemplate
+          data={data}
+          car={vechicle}
+          sumPrice={sumPrice}
+          sumWeight={sumWeight}
+        />
+      )
+    ).toBlob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "myfile.pdf";
+    link.click();
+  };
+
   const getCurrentTypeForm = () => {
     if (currentType === "tth") {
       return (
@@ -152,18 +188,19 @@ export default function ThirdPart({
 
       <button
         className={`${isValid ? styles.active : ""}`}
-        onClick={() => {
+        onClick={async () => {
           if (!isValid) return;
 
           console.log(JSON.parse(localStorage.user));
 
-          dispatch(
+          const test = await dispatch(
             shipProduct({
               id: JSON.parse(localStorage?.user)?.id,
               products: dataToSend.secondPart,
             })
           );
 
+          downloadPdf(test?.payload);
           navigate("/redirecting");
         }}
       >
