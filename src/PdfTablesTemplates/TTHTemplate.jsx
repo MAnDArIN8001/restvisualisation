@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: "center",
     fontFamily: "Roboto",
-    fontSize: "20px",
+    fontSize: "18px",
     fontWeight: "bold",
   },
   table: {
@@ -67,7 +67,7 @@ const TTHTemplate = ({
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.header}>
-        <Text style={styles.title}>ТОВАРНО ТРАНСПОРТНАЯ НАКЛАДНАЯ</Text>
+        <Text style={styles.title}>ТОВАРНО-ТРАНСПОРТНАЯ НАКЛАДНАЯ</Text>
 
         <Text style={styles.textHeader}>Автомобиль: {car}</Text>
         <Text style={styles.textHeader}>Адресс грузополучателя: {address}</Text>

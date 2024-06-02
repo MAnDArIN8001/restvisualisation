@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   table: {
     display: "table",
     width: "auto",
-    marginTop: "20px",
+    marginTop: "18px",
     borderStyle: "solid",
     borderWidth: 1,
     borderRightWidth: 0,
@@ -68,9 +68,11 @@ const THTemplate = ({
       <View style={styles.header}>
         <Text style={styles.title}>ТОВАРНАЯ НАКЛАДНАЯ</Text>
 
-        <Text>Автомобиль: {car}</Text>
-        <Text>Наименование грузополучателя: {nameReciaver}</Text>
-        <Text>Наименование грузополучателя: {nameReciaver}</Text>
+        <Text style={styles.textHeader}>Автомобиль: {car}</Text>
+        <Text style={styles.textHeader}>Адресс грузополучателя: {address}</Text>
+        <Text style={styles.textHeader}>
+          Наименование грузополучателя: {nameReciaver}
+        </Text>
       </View>
       <View style={styles.table}>
         <View style={styles.tableRow}>
