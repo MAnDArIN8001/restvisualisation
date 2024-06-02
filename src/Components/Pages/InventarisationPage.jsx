@@ -1,6 +1,9 @@
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { tryGetUser } from "../../Redux/Slices/auth";
+import { pdf } from "@react-pdf/renderer";
+
+import InventarisationPrototype from "../../PdfTablesTemplates/InventarisationPrototype";
 
 import { fetchInventory } from "../../Redux/Slices/accountant";
 
@@ -34,6 +37,15 @@ export default function InventarisationPage() {
 
   const CloseMenu = () => {
     setBurgerState(false);
+  };
+
+  const downloadPdf = async (data) => {
+    const blob = await pdf(<InventarisationPage data={data} />).toBlob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "myfile.pdf";
+    link.click();
   };
 
   return (
@@ -109,11 +121,15 @@ export default function InventarisationPage() {
 
           <button
             className={styles.blue_button}
-            onClick={() => {
-              dispatch(
+            onClick={async () => {
+              if (products.length === 0) return;
+
+              const test = await dispatch(
                 fetchInventory({ id: currentUser?.id, ships: products })
               );
 
+              console.log(test);
+              downloadPdf(test.payload);
               setProducts([]);
             }}
           >
