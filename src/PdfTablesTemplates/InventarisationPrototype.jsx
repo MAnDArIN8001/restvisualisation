@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   tableRow: { margin: "auto", flexDirection: "row" },
   tableCol: {
-    width: "25%",
+    width: "50%",
     borderStyle: "solid",
     borderWidth: 1,
     borderLeftWidth: 0,
