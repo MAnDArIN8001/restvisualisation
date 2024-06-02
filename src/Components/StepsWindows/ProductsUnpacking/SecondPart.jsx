@@ -43,6 +43,16 @@ export default function SecondPart({
             placeholder="Уникальный номер"
             value={id}
             onChange={(e) => {
+              if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                return;
+              }
+
+              if (e.target.value.length > 0 && e.target.value <= 0) {
+                setId("1");
+
+                return;
+              }
+
               setId(e.target.value);
             }}
           />
@@ -55,6 +65,16 @@ export default function SecondPart({
             placeholder="НДС"
             value={nds}
             onChange={(e) => {
+              if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                return;
+              }
+
+              if (e.target.value.length > 0 && e.target.value <= 0) {
+                setNds("1");
+
+                return;
+              }
+
               setNds(e.target.value);
             }}
           />

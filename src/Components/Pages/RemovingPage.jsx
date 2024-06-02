@@ -63,7 +63,19 @@ export default function RemovingPage() {
               type="text"
               placeholder="Уникальный номер"
               value={currentId}
-              onChange={(e) => setCurrentId(e.target.value)}
+              onChange={(e) => {
+                if (isNaN(Number(e.target.value))) {
+                  return;
+                }
+
+                if (e.target.value.length > 0 && e.target.value <= 0) {
+                  setCurrentId("1");
+
+                  return;
+                }
+
+                setCurrentId(e.target.value);
+              }}
             />
 
             <p>Укажите причину</p>

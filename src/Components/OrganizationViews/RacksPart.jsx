@@ -38,30 +38,66 @@ export default function RacksPart() {
       <div className={styles.base_field}>
         <p>УНП организации</p>
         <input
-          type="text"
+          type="number"
           placeholder="Введите номер склада"
           value={inn}
-          onChange={(e) => setInn(e.target.value)}
+          onChange={(e) => {
+            if (isNaN(Number(e.target.value.slice(0, -1)))) {
+              return;
+            }
+
+            if (e.target.value.length > 0 && e.target.value <= 0) {
+              setInn("1");
+
+              return;
+            }
+
+            setInn(e.target.value);
+          }}
         />
       </div>
 
       <div className={styles.base_field}>
         <p>Номер склада</p>
         <input
-          type="text"
+          type="number"
           placeholder="Введите номер склада"
           value={number}
-          onChange={(e) => setNumber(e.target.value)}
+          onChange={(e) => {
+            if (isNaN(Number(e.target.value.slice(0, -1)))) {
+              return;
+            }
+
+            if (e.target.value.length > 0 && e.target.value <= 0) {
+              setNumber("1");
+
+              return;
+            }
+
+            setNumber(e.target.value);
+          }}
         />
       </div>
 
       <div className={styles.base_field}>
         <p>Грузоподъемность</p>
         <input
-          type="text"
+          type="number"
           placeholder="Введите грузоподъемность"
           value={capacity}
-          onChange={(e) => setWeightness(e.target.value)}
+          onChange={(e) => {
+            if (isNaN(Number(e.target.value.slice(0, -1)))) {
+              return;
+            }
+
+            if (e.target.value.length > 0 && e.target.value <= 0) {
+              setWeightness("1");
+
+              return;
+            }
+
+            setWeightness(e.target.value);
+          }}
         />
       </div>
 
@@ -71,7 +107,19 @@ export default function RacksPart() {
           type="text"
           placeholder="Введите число ячеек"
           value={celsCount}
-          onChange={(e) => setCelsCount(e.target.value)}
+          onChange={(e) => {
+            if (isNaN(Number(e.target.value.slice(0, -1)))) {
+              return;
+            }
+
+            if (e.target.value.length > 0 && e.target.value <= 0) {
+              setCelsCount("1");
+
+              return;
+            }
+
+            setCelsCount(e.target.value);
+          }}
         />
       </div>
 
@@ -82,7 +130,18 @@ export default function RacksPart() {
             type="text"
             placeholder="Введите длинну ячейки"
             value={length}
-            onChange={(e) => setLength(e.target.value)}
+            onChange={(e) => {
+              if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                return;
+              }
+
+              if (e.target.value.length > 0 && e.target.value <= 0) {
+                setLength("1");
+
+                return;
+              }
+              setLength(e.target.value);
+            }}
           />
         </div>
 
@@ -92,7 +151,19 @@ export default function RacksPart() {
             type="text"
             placeholder="Введите ширину ячейкиы"
             value={width}
-            onChange={(e) => setWidth(e.target.value)}
+            onChange={(e) => {
+              if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                return;
+              }
+
+              if (e.target.value.length > 0 && e.target.value <= 0) {
+                setWidth("1");
+
+                return;
+              }
+
+              setWidth(e.target.value);
+            }}
           />
         </div>
 
@@ -102,7 +173,19 @@ export default function RacksPart() {
             type="text"
             placeholder="Введите высоту ячейкиы"
             value={height}
-            onChange={(e) => setHeight(e.target.value)}
+            onChange={(e) => {
+              if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                return;
+              }
+
+              if (e.target.value.length > 0 && e.target.value <= 0) {
+                setHeight("1");
+
+                return;
+              }
+
+              setHeight(e.target.value);
+            }}
           />
         </div>
       </div>

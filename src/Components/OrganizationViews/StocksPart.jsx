@@ -19,10 +19,22 @@ export default function StocksPart() {
       <div className={styles.base_field}>
         <p>УНП организации</p>
         <input
-          type="text"
+          type="number"
           placeholder="Введите унп организации"
           value={inn}
-          onChange={(e) => setInn(e.target.value)}
+          onChange={(e) => {
+            if (isNaN(Number(e.target.value.slice(0, -1)))) {
+              return;
+            }
+
+            if (e.target.value.length > 0 && e.target.value <= 0) {
+              setInn("1");
+
+              return;
+            }
+
+            setInn(e.target.value);
+          }}
         />
       </div>
 

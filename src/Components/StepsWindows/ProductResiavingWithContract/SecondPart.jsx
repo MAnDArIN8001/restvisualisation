@@ -55,10 +55,22 @@ export default function SecondPart({ setStep, firstParams, secondStepParam }) {
         <div className={styles.base_field}>
           <p>Стоимость</p>
           <input
-            type="text"
+            type="number"
             placeholder="Стоимость"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e) => {
+              if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                return;
+              }
+
+              if (e.target.value.length > 0 && e.target.value <= 0) {
+                setPrice("1");
+
+                return;
+              }
+
+              setPrice(e.target.value);
+            }}
           />
         </div>
 

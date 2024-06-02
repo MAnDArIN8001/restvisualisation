@@ -92,7 +92,9 @@ export default function SecondPart({
             type="text"
             placeholder="Единица измерения"
             value={sizing}
-            onChange={(e) => setSizing(e.target.value)}
+            onChange={(e) => {
+              setSizing(e.target.value);
+            }}
           />
         </div>
 
@@ -103,7 +105,19 @@ export default function SecondPart({
             min={0}
             placeholder="Колисество"
             value={count}
-            onChange={(e) => setCount(e.target.value)}
+            onChange={(e) => {
+              if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                return;
+              }
+
+              if (e.target.value.length > 0 && e.target.value <= 0) {
+                setCount("1");
+
+                return;
+              }
+
+              setCount(e.target.value);
+            }}
           />
         </div>
 
@@ -114,7 +128,21 @@ export default function SecondPart({
             min={0}
             placeholder="Стоимость"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e) => {
+              if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                setPrice(price.slice(0, -1));
+
+                return;
+              }
+
+              if (e.target.value.length > 0 && e.target.value <= 0) {
+                setPrice("1");
+
+                return;
+              }
+
+              setPrice(e.target.value);
+            }}
           />
         </div>
 
@@ -126,6 +154,18 @@ export default function SecondPart({
             placeholder="Вес"
             value={weight}
             onChange={(e) => {
+              if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                setWeight(weight.slice(0, -1));
+
+                return;
+              }
+
+              if (e.target.value.length > 0 && e.target.value <= 0) {
+                setWeight("1");
+
+                return;
+              }
+
               setWeight(e.target.value);
             }}
           />
@@ -139,7 +179,21 @@ export default function SecondPart({
               min={0}
               placeholder="Длинна"
               value={length}
-              onChange={(e) => setLength(e.target.value)}
+              onChange={(e) => {
+                if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                  setLength(length.slice(0, -1));
+
+                  return;
+                }
+
+                if (e.target.value.length > 0 && e.target.value <= 0) {
+                  setLength("1");
+
+                  return;
+                }
+
+                setLength(e.target.value);
+              }}
             />
           </div>
 
@@ -150,7 +204,21 @@ export default function SecondPart({
               min={0}
               placeholder="Ширина"
               value={width}
-              onChange={(e) => setWidth(e.target.value)}
+              onChange={(e) => {
+                if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                  setWidth(width.slice(0, -1));
+
+                  return;
+                }
+
+                if (e.target.value.length > 0 && e.target.value <= 0) {
+                  setWidth("1");
+
+                  return;
+                }
+
+                setWidth(e.target.value);
+              }}
             />
           </div>
 
@@ -161,7 +229,21 @@ export default function SecondPart({
               placeholder="Высота"
               min={0}
               value={height}
-              onChange={(e) => setHeight(e.target.value)}
+              onChange={(e) => {
+                if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                  setHeight(height.slice(0, -1));
+
+                  return;
+                }
+
+                if (e.target.value.length > 0 && e.target.value <= 0) {
+                  setHeight("1");
+
+                  return;
+                }
+
+                setHeight(e.target.value);
+              }}
             />
           </div>
         </div>

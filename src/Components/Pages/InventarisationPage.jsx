@@ -61,7 +61,19 @@ export default function InventarisationPage() {
               type="text"
               placeholder="Уникальный номер"
               value={currentId}
-              onChange={(e) => setCurrentId(e.target.value)}
+              onChange={(e) => {
+                if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                  return;
+                }
+
+                if (e.target.value.length > 0 && e.target.value <= 0) {
+                  setCurrentId("1");
+
+                  return;
+                }
+
+                setCurrentId(e.target.value);
+              }}
             />
 
             <button

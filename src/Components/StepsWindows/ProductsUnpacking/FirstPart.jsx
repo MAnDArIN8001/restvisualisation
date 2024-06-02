@@ -31,6 +31,16 @@ export default function FirstPart({
             placeholder="Количество"
             value={countValue}
             onChange={(e) => {
+              if (isNaN(Number(e.target.value.slice(0, -1)))) {
+                return;
+              }
+
+              if (e.target.value.length > 0 && e.target.value <= 0) {
+                setCountValueInner("1");
+
+                return;
+              }
+
               setCountValueInner(e.target.value);
             }}
           />

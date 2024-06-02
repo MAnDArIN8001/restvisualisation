@@ -80,6 +80,15 @@ export default function TTHField({
           placeholder="Номер"
           value={contractNumber.value}
           onChange={(e) => {
+            if (isNaN(Number(e.target.value.slice(0, -1)))) {
+              return;
+            }
+
+            if (e.target.value.length > 0 && e.target.value <= 0) {
+              contractNumber.set("1");
+
+              return;
+            }
             contractNumber.set(e.target.value);
           }}
         />

@@ -163,7 +163,19 @@ export default function SigninWindow() {
           type="number"
           placeholder="Введите идентификатор"
           value={organizationId}
-          onChange={(e) => setOrganizationId(e.target.value)}
+          onChange={(e) => {
+            if (isNaN(Number(e.target.value.slice(0, -1)))) {
+              return;
+            }
+
+            if (e.target.value.length > 0 && e.target.value <= 0) {
+              setOrganizationId("1");
+
+              return;
+            }
+
+            setOrganizationId(e.target.value);
+          }}
         />
       </div>
 
