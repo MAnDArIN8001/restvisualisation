@@ -69,7 +69,6 @@ const THTemplate = ({
       <View style={styles.header}>
         <Text style={styles.title}>ТОВАРНАЯ НАКЛАДНАЯ</Text>
 
-        <Text style={styles.textHeader}>Автомобиль: {car}</Text>
         <Text style={styles.textHeader}>Адресс грузополучателя: {address}</Text>
         <Text style={styles.textHeader}>
           Наименование грузополучателя: {nameReciaver}
