@@ -17,6 +17,7 @@ Font.register({
 
 const styles = StyleSheet.create({
   page: { padding: "10px" },
+  textHeader: { fontFamily: "Roboto", fontSize: "14px" },
   header: {
     display: "flex",
     flexDirection: "column",
@@ -59,7 +60,7 @@ const TTHTemplate = ({ data, car, sumPrice, sumWeight }) => (
       <View style={styles.header}>
         <Text style={styles.title}>ТОВАРНО ТРАНСПОРТНАЯ НАКЛАДНАЯ</Text>
 
-        <Text>Автомобиль: {car}</Text>
+        <Text style={styles.textHeader}>Автомобиль: {car}</Text>
       </View>
       <View style={styles.table}>
         <View style={styles.tableRow}>
