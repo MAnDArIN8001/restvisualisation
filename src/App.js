@@ -21,12 +21,14 @@ import SigninWindow from "./Components/Authorization/SigninWindow";
 import ProductReciavingWindow from "./Components/StepsWindows/ProductReciavingWindow/ProductReciavingWindow";
 import ProductReciavingWithContractWindow from "./Components/StepsWindows/ProductResiavingWithContract/ProductResiavingWithContractWindow";
 import ProductUnpackingWindow from "./Components/StepsWindows/ProductsUnpacking/ProductUnpackingWindow";
+import BaseText from "./Components/Authorization/BaseText";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainPage />,
     children: [
+      { path: "", element: <BaseText /> },
       { path: "login", element: <LoginWindow /> },
       { path: "signin", element: <SigninWindow /> },
     ],

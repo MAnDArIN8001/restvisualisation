@@ -85,7 +85,9 @@ const InventarisationPrototype = ({ data }) => (
               <Text style={styles.tableTitle}>{item.name}</Text>
             </View>
             <View style={styles.tableCol}>
-              <Text style={styles.tableTitle}>{item.price}</Text>
+              <Text style={styles.tableTitle}>
+                {convertStatusToString(item.status)}
+              </Text>
             </View>
           </View>
         ))}
