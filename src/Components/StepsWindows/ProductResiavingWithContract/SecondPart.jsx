@@ -131,6 +131,13 @@ export default function SecondPart({ setStep, firstParams, secondStepParam }) {
             })
           );
 
+          if (test?.error) {
+            firstParams.set({ count: "", contractId: "" });
+            secondStepParam.set([]);
+            navigate("/remark");
+            return;
+          }
+
           downloadPdf(test.payload);
           firstParams.set({ count: "", contractId: "" });
           secondStepParam.set([]);

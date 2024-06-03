@@ -127,6 +127,8 @@ export default function ReportsPage() {
                 })
               );
 
+              if (test?.error) return;
+
               downloadPdf(test.payload);
               console.log(test);
             }}

@@ -149,6 +149,12 @@ export default function RemovingPage() {
                 writeOff({ id: currentUser.id, products: products })
               );
               console.log(test);
+
+              if (test?.error) {
+                setProducts([]);
+                return;
+              }
+
               downloadPdf(test.payload);
               setProducts([]);
             }}

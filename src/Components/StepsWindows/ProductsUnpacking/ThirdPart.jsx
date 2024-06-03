@@ -210,6 +210,11 @@ export default function ThirdPart({
             })
           );
 
+          if (test?.error) {
+            navigate("/redirecting");
+            return;
+          }
+
           downloadPdf(test?.payload);
           navigate("/redirecting");
         }}

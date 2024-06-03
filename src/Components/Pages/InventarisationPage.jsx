@@ -128,6 +128,12 @@ export default function InventarisationPage() {
                 fetchInventory({ id: currentUser?.id, ships: products })
               );
 
+              if (test?.error) {
+                setProducts([]);
+
+                return;
+              }
+
               console.log(test);
               downloadPdf(test.payload);
               setProducts([]);
