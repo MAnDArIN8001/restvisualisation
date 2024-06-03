@@ -15,16 +15,6 @@ Font.register({
   src: font,
 });
 
-const convertStatusToString = (value) => {
-  if (value === "accepted") {
-    return "Принят";
-  } else if (value === "writeoff") {
-    return "Списан";
-  } else if (value === "nonverified") {
-    return "Не обработан";
-  }
-};
-
 const styles = StyleSheet.create({
   page: { padding: "10px" },
   textHeader: { fontFamily: "Roboto", fontSize: "14px", textAlign: "center" },

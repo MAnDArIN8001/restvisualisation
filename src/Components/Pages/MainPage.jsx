@@ -6,6 +6,7 @@ import { tryGetUser } from "../../Redux/Slices/auth";
 
 import Header from "../Header/Header";
 import Navigation from "../Navgation/Navigation";
+import BaseText from "../Authorization/BaseText";
 
 import styles from "../../Assets/Styles/Style.module.scss";
 import BurgerMenu from "../BurgerMeny/BrgerMenu";
@@ -61,21 +62,7 @@ export default function MainPage() {
         {currentUser && <Navigation />}
 
         <section className={`${styles.content} ${styles.center}`}>
-          {currentUser ? (
-            <section className={styles.main_page_content_box}>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa
-                ex nostrum laborum libero nihil inventore nulla corporis rem
-                deleniti perferendis sapiente quaerat tempora ipsa, dicta
-                distinctio sed dolores vero in dignissimos maxime quisquam
-                laudantium deserunt? Hic rem consequatur nemo, et deleniti
-                accusamus ratione eligendi quos totam architecto reprehenderit
-                possimus recusandae?
-              </p>
-            </section>
-          ) : (
-            <Outlet />
-          )}
+          {currentUser ? <BaseText /> : <Outlet />}
         </section>
       </main>
     </>

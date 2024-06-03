@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { pdf } from "@react-pdf/renderer";
 
 import { fetchDocs } from "../../Redux/Slices/director";
 import { tryGetUser } from "../../Redux/Slices/auth";
+
+import ReportPrototype from "../../PdfTablesTemplates/ReportProtype";
 
 import Header from "../Header/Header";
 import Navigation from "../Navgation/Navigation";
@@ -40,6 +43,22 @@ export default function ReportsPage() {
     document.querySelector("body").classList.remove(styles.burger_opened);
 
     setBurgerState(false);
+  };
+
+  const downloadPdf = async (data) => {
+    const blob = await pdf(
+      <ReportPrototype
+        data={data}
+        accepted={accepted}
+        writeoff={writeoff}
+        nonverified={nonverified}
+      />
+    ).toBlob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "myfile.pdf";
+    link.click();
   };
 
   return (
@@ -98,8 +117,8 @@ export default function ReportsPage() {
 
           <button
             className={styles.blue_button}
-            onClick={() => {
-              dispatch(
+            onClick={async () => {
+              const test = await dispatch(
                 fetchDocs({
                   accepted,
                   writeoff,
@@ -107,6 +126,9 @@ export default function ReportsPage() {
                   userId: currentUser?.id,
                 })
               );
+
+              downloadPdf(test.payload);
+              console.log(test);
             }}
           >
             Сформировать
