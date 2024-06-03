@@ -298,10 +298,21 @@ export default function SecondPart({
 
       <button
         className={`${isValidNext ? styles.active : ""}`}
-        onClick={() => {
+        onClick={async () => {
           if (!isValidNext) return;
 
-          dispatch(createTable({ products: resultArray, id: currentUser?.id }));
+          const test = await dispatch(
+            createTable({ products: resultArray, id: currentUser?.id })
+          );
+
+          if (test?.error) {
+            setCountValue("");
+            resultArrayState.set([]);
+            navigate("/resiaving");
+
+            return;
+          }
+
           downloadPdf(resultArray);
           setCountValue("");
           resultArrayState.set([]);
