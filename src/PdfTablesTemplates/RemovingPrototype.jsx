@@ -73,9 +73,6 @@ const RemovingProrptype = ({ data }) => (
           <View style={styles.tableCol}>
             <Text style={styles.tableTitle}>Цена</Text>
           </View>
-          <View style={styles.tableCol}>
-            <Text style={styles.tableTitle}>Причина</Text>
-          </View>
         </View>
 
         {data.map((item, index) => (
@@ -91,9 +88,6 @@ const RemovingProrptype = ({ data }) => (
             </View>
             <View style={styles.tableCol}>
               <Text style={styles.tableTitle}>{item.price}</Text>
-            </View>
-            <View style={styles.tableCol}>
-              <Text style={styles.tableTitle}>{item.reasone}</Text>
             </View>
           </View>
         ))}
