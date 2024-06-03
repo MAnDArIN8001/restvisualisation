@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { pdf } from "@react-pdf/renderer";
 
 import { writeOff } from "../../Redux/Slices/accountant";
+import RemovingProrptype from "../../PdfTablesTemplates/RemovingPrototype";
 
 import MyDocument from "../../PdfTablesTemplates/TestTemplate";
 
@@ -40,6 +41,15 @@ export default function RemovingPage() {
     document.querySelector("body").classList.remove(styles.burger_opened);
 
     setBurgerState(false);
+  };
+
+  const downloadPdf = async (data) => {
+    const blob = await pdf(<RemovingProrptype data={data} />).toBlob();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "myfile.pdf";
+    link.click();
   };
 
   return (
@@ -132,11 +142,13 @@ export default function RemovingPage() {
 
           <button
             className={styles.blue_button}
-            onClick={() => {
+            onClick={async () => {
               if (products.length === 0) return;
 
-              dispatch(writeOff({ id: currentUser.id, products: products }));
-
+              const test = await dispatch(
+                writeOff({ id: currentUser.id, products: products })
+              );
+              console.log(test);
               setProducts([]);
             }}
           >
